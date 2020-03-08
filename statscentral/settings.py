@@ -25,12 +25,13 @@ SECRET_KEY = 'e4h)%g4llshj*i#_@igicrjq37u0%b*+=p!xtsxofej!(majer'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
 
 INSTALLED_APPS = [
+    'accounts',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -75,8 +76,12 @@ WSGI_APPLICATION = 'statscentral.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'statscentral_DBMS_Wizard',
+        'USER':'statscentral_app',
+        'PASSWORD':'a1s2d3f4g5',
+        'HOST':'localhost',
+        'PORT':'3306',
     }
 }
 
