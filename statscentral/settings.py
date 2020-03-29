@@ -80,7 +80,7 @@ DATABASES = {
         'NAME': 'statscentral_DBMS_Wizard',
         'USER':'statscentral_app',
         'PASSWORD':'a1s2d3f4g5',
-        'HOST':'localhost',
+        'HOST':'127.0.0.1',
         'PORT':'3306',
     }
 }
