@@ -1,0 +1,32 @@
+{% extends "base_generic.html" %}
+{% load static %}
+{% block content %}
+
+<div class="gp_container">
+
+<p>
+    <h1>{{request.user.first_name }} {{user.last_name }}<br/></h1>
+
+    <p><h3> {{ request.user.username }}</h3> </p>
+<p>
+    Birthdate: {{ user.profile.birthdate }} <br>
+    Sex: {{ user.profile.sex }} <br/>
+    Height: {{ user.profile.height }} inches<br/>
+    Weight: {{ user.profile.weight }} pounds<br/>
+    Activity Level: {{ request.user.profile.ACTIVITY_LEVEL.0.1}} <br/>
+    Physical Goal: {{ request.user.profile.PHYSICAL_GOAL.1.1 }} <br/><br/>
+    <h3>Macros</h3>
+    <p>
+    Protein: {{ user.profile.protein_goal }} g<br/>
+    Carbohydrates: {{ user.profile.carb_goal }} g<br/>
+    Fats: {{ user.profile.fat_goal }} g<br/>
+</p>
+</p>
+
+    <br/>
+
+    <p><a href="{% url 'profile_edit' %}" class="btn btn-info left">Edit Profile</a><br/></p>
+</p>
+
+</div>
+{% endblock %}
