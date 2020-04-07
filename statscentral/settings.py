@@ -71,7 +71,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'statscentral.wsgi.application'
 
-AUTH_USER_MODEL = 'account.Account'
 
 
 # Database
