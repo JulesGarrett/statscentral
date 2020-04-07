@@ -16,16 +16,9 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from django.conf.urls import url
-from . import views
+from cities.views import home_screen_view
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('account/', include('accounts.urls')),
-    path('signup/', views.signup, name='signup'),
-    path('info/', views.info, name='info'),
-    path('', views.index, name='index'),
-]
-
-urlpatterns += [
-    path('accounts/', include('django.contrib.auth.urls')),
+    path('', home_screen_view, name='index'),
 ]
