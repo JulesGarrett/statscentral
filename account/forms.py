@@ -4,7 +4,7 @@ from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from .models import UserProfile
 
 class RegistrationForm(UserCreationForm):
-    email = forms.EmailField(required=True)
+    email = forms.EmailField(required=True, help_text='Required. Enter valid email')
 
     class Meta:
         model = User
@@ -46,5 +46,3 @@ class EditProfileForm(UserChangeForm):
         "last_name",
         "password",
         )
-
-        
