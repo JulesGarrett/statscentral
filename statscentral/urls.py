@@ -20,8 +20,10 @@ from . import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('account/', include('accounts.urls')),
+    path('signup/', views.signup, name='signup'),
+    path('info/', views.info, name='info'),
     path('', views.index, name='index'),
-    url(r'^$',include('accounts.urls')),
 ]
 
 urlpatterns += [
