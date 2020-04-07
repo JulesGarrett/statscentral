@@ -71,6 +71,8 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'statscentral.wsgi.application'
 
+AUTH_USER_MODEL = 'accounts.Account'
+
 
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
