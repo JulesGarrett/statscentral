@@ -28,12 +28,6 @@ class RegistrationForm(UserCreationForm):
 
         return user
 
-#Form for custom User Profile Table
-class UserProfileForm(forms.ModelForm):
-
-    class Meta:
-        model = UserProfile
-
 
 #Form for Editing Django Base Profile info
 class EditProfileForm(UserChangeForm):
