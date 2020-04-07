@@ -5,8 +5,22 @@
 <h2>Register</h2>
 <form class="reg-user" action="index.html" method="post">
   {% csrf_token %}
-    {{ form.as_p }}
-    {{ profile_form.as_p }}
+  {% for field in registration_form %}
+    <p>
+      {{ field.label_tag }}
+      {{field}}
+
+      {% if field.help_text %}
+        <small style="color: grey;">{{field.help_text}}</small>
+      {% endif %}
+
+      {% for error in field.errors %}
+        <p style="color:red;"> {{error}} </p>
+      {% endfor %}
+
+
+    </p>
+  {% endfor %}
   <button type="submit" name="button">Register</button>
 </form>
 
