@@ -17,7 +17,7 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf.urls import url
 from cities.views import home_screen_view
-# from account.views import registration_view
+from account.views import registration_view
 
 urlpatterns = [
     path('admin/', admin.site.urls),
