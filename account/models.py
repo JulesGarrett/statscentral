@@ -30,7 +30,7 @@ class MyAccountManager(BaseUserManager):
 		user.save(using=self._db)
 		return user
 
-
+# cd
 class Account(AbstractBaseUser):
 	email 					= models.EmailField(verbose_name="email", max_length=60, unique=True)
 	username 				= models.CharField(max_length=30, unique=True)

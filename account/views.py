@@ -20,3 +20,4 @@ def registration_view(request):
 		form = RegistrationForm()
 		context['registration_form'] = form
 	return render(request, 'account/register.html', context)
+# cd
