@@ -31,7 +31,6 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = [
-    'account',
     'cities',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -69,7 +68,6 @@ TEMPLATES = [
     },
 ]
 
-AUTH_USER_MODEL = 'account.Account'
 
 WSGI_APPLICATION = 'statscentral.wsgi.application'
 
