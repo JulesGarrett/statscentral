@@ -3,8 +3,6 @@ from django.contrib.auth import login, authenticate
 from account.forms import RegistrationForm
 
 
-# Create your views here.
-
 def registration_view(request):
 	context = {}
 	if request.POST:
@@ -18,8 +16,7 @@ def registration_view(request):
 			return redirect('home')
 		else:
 			context['registration_form'] = form
-
-	else:
+	else: #GET request
 		form = RegistrationForm()
 		context['registration_form'] = form
 	return render(request, 'account/register.html', context)
