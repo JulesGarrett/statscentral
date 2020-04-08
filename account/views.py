@@ -60,7 +60,7 @@ def account_view(request):
 			form = AccountUpdateForm(
 				initial = {
 					"email":request.user.email,
-					"username:" request.user.username,
+					"username": request.user.username,
 				}
 			)
 		context['account_form'] = form
