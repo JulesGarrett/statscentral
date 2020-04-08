@@ -3,24 +3,26 @@
   <head>
     <meta charset="utf-8">
     <title>Home</title>
+    {% if request.user.is_quthenticated %}
+      <p> Hello, {{request.user.username}} <a href="{%url 'logout' %}">Logout</a></p>
+    {%else%}
+      <p><a href="{%url 'register'%}">Register</a> | <a href="#">Login</a></p>
+    {% endif %}
 
-    <div class="page-content" style = "border: 2px solid #000;">
-      <h1> Title </h1>
-    </div>
+      <hr>
   </head>
 
 
   <body>
     {% block content %}
-    
+
     {% endblock content %}
 
   </body>
 
 
   <footer>
-    <div class="page-content" style = "border: 2px solid #000;">
-      <h3> Footer </h3>
-    </div>
+    <hr>
+      <p> StatsCentral City Search Tool | UIUC Spring 2019</p>
   </footer>
 </html>
