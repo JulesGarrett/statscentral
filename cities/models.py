@@ -1,7 +1,7 @@
 from django.db import models
 
 
-class City(models.Model):
+class Cities(models.Model):
 	Zip_ID 					= models.IntegerField(blank=True, null=True)
 	ZipCode 				= models.IntegerField(blank=True, null=True)
 	CityID					= models.IntegerField(blank=True, null=True)
@@ -13,7 +13,7 @@ class City(models.Model):
 	def __str__(self):
 		return self.City
 
-class Review(models.Model):
+class Reviews(models.Model):
 	username				= models.CharField(max_length=30, blank=False, null=False)
 	City					= models.CharField(max_length=50, null=False, blank=False)
 	Rating					= models.IntegerField(blank=True, null=True)
