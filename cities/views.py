@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from cities.models import Cities, Reviews
+# from cities.models import Cities, Reviews
 
 # Create your views here.
 def home_screen_view(request):
