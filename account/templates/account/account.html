@@ -39,12 +39,12 @@
 
 <form class="form-signin" method="post">{% csrf_token %}
 
-  <h1 class="h3 mb-3 font-weight-normal">Account</h1>
+  <h1 class="h3 mb-3 font-weight-normal">Change Account Details</h1>
 
-  <p> Change Email </p>
+  <label for="inputEmail">Email:</label>
   <input type="email" name="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus value={{account_form.initial.email}}>
 
-  <p> Change Username </p>
+  <label for="inputEmail">Username:</label>
   <input type="text" name="username" id="inputUsername" class="form-control" placeholder="Username" required
   value="{{account_form.initial.username}}">
 
