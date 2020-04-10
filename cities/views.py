@@ -4,3 +4,6 @@ from django.shortcuts import render
 def home_screen_view(request):
     context = {}
     return render(request, "cities/home.html", context)
+
+def search_cities(text):
+    None
