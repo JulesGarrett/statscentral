@@ -12,3 +12,12 @@ class City(models.Model):
 
 	def __str__(self):
 		return self.City
+
+class Review(models.Model):
+	username				= models.CharField(max_length=30, blank=False, null=False)
+	City					= models.CharField(max_length=50, null=False, blank=False)
+	Rating					= models.IntegerField(blank=True, null=True)
+	Comments				= models.TextField(max_length=2000, null=True, blank=True)
+
+	def __str__(self):
+		return self.username +": " +self.City
