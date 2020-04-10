@@ -1,7 +1,7 @@
 from django.db import models
 
 
-class Cities(models.Model):
+class City(models.Model):
 	Zip_ID 					= models.IntegerField(blank=True, null=True)
 	ZipCode 				= models.IntegerField(blank=True, null=True)
 	CityID					= models.IntegerField(blank=True, null=True)
