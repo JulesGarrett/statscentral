@@ -5,7 +5,7 @@ class City(models.Model):
 	Zip_ID 					= models.IntegerField(blank=True, null=True)
 	ZipCode 				= models.IntegerField(blank=True, null=True)
 	CityID					= models.IntegerField(blank=True, null=True)
-	City 					= models.CharField(max_length=50, null=False, blank=False, primary_key=True)
+	City 					= models.CharField(max_length=50, null=False, blank=False)
 	Latitude				= models.IntegerField(blank=True, null=True)
 	Longitude 				= models.IntegerField(blank=True, null=True)
 	Population				= models.IntegerField(blank=True, null=True)
