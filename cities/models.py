@@ -18,5 +18,8 @@ class Reviews(models.Model):
 	Rating					= models.IntegerField(blank=True, null=True)
 	Comments				= models.TextField(max_length=2000, null=True, blank=True)
 
+	class Meta:
+		unique_together = (('username', 'City'),)
+
 	def __str__(self):
 		return self.username +"_" +self.City
