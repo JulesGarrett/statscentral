@@ -26,7 +26,7 @@ urlpatterns = [
     path('register/', registration_view, name="register"),
     path('logout/', logout_view, name="logout"),
     path('login/', login_view, name="login"),
-    path('cities/', include('search.urls', 'cities')),
+    path('cities/', include('cities.urls', 'cities')),
     path('account/', account_view, name="account"),
 
      # Password reset
