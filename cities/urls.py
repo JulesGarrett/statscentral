@@ -1,5 +1,5 @@
 from django.urls import path
-from cities.views import search_cities, city_details
+from cities.views import search_cities#, city_details
 
 app_name = 'cities'
 
