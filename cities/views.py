@@ -53,9 +53,7 @@ def create_review(request):
 	context = {}
 
 	user = request.user
-	if not user.is_authenticated:
-		return redirect('home')
-
+    
 	form = CreateReviewForm(request.POST or None)
 	if form.is_valid():
 		obj = form.save(commit=False)
@@ -66,3 +64,29 @@ def create_review(request):
 	context['form'] = form
 
 	return render(request, 'cities/create_review.html', context)
+
+
+def edit_review_view(request, slug):
+
+	context = {}
+	user = request.user
+
+	review = get_object_or_404(BlogPost, slug=slug)
+	if request.POST:
+		form = UpdateBlogPostForm(request.POST or None, request.FILES or None, instance=blog_post)
+		if form.is_valid():
+			obj = form.save(commit=False)
+			obj.save()
+			context['success_message'] = "Updated"
+			blog_post = obj
+
+	form = UpdateBlogPostForm(
+			initial={
+					"title": blog_post.title,
+					"body": blog_post.body,
+					"image": blog_post.image,
+				}
+			)
+	context['form'] = form
+
+	return render(request, 'blog/edit_blog.html', context)
