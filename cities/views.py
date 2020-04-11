@@ -52,7 +52,7 @@ def search_cities(request):
 def create_review(request):
     context = {}
     user = request.user
-    form = CreateReviewForm(request.POST)
+    form = CreateReviewForm(request.POST or None)
     if form.is_valid():
         obj = form.save(commit=False)
         author = Account.objects.filter(email=user.email).first()
