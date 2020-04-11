@@ -28,12 +28,12 @@ class CityReviews(models.Model):
 	date_updated 			= models.DateTimeField(auto_now=True, verbose_name="date updated")
 	author 					= models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
 	slug 					= models.SlugField(blank=True, unique=True)
-	# give options 
+	# give options
 	OVERALLCITY = 1
-    SCHOOL = 2
-    MILITARY = 3
-    REVIEW_TYPE = ((OverallCity, 'City'),(School, 'School'),(Military, 'Military'),)
-    ReviewType 				= models.PositiveSmallIntegerField(choices=ReviewType, null=False, blank=False, default='1')
+	SCHOOL = 2
+	MILITARY = 3
+	REVIEW_TYPE = ((OverallCity, 'City'),(School, 'School'),(Military, 'Military'),)
+	ReviewType 				= models.PositiveSmallIntegerField(choices=ReviewType, null=False, blank=False, default='1')
 
 	def __str__(self):
 		return str(self.City) + str(author)
