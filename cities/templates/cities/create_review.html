@@ -20,7 +20,7 @@
 <div class="container">
 	<div class="row">
 		<div class="col-lg-7 offset-lg-1">
-			<form class="create-form" method="post">{% csrf_token %}
+			<form class="create-form" method="POST">{% csrf_token %}
         {% crispy form %}
 				<button class="submit-button btn btn-lg btn-primary btn-block" type="submit">Add Review</button>
 			</form>
