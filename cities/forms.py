@@ -19,7 +19,7 @@ class UpdateReviewForm(forms.ModelForm):
 		review.title = self.cleaned_data['title']
 		review.body = self.cleaned_data['body']
         review.rating = self.cleaned_data['rating']
-
+        
 		if commit:
 			blog_post.save()
 		return blog_post
