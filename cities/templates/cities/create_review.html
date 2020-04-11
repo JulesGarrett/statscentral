@@ -1,9 +1,55 @@
 {% extends 'base.html' %}
 {% block content %}
 
+<style type="text/css">
+  .create-form {
+	    width: 100%;
+	    max-width: 100%;
+	    padding: 15px;
+	    margin: auto;
+  	}
+
+  	.submit-button{
+  		max-width: 200px;
+  	}
+</style>
+
+
 <h3> Create a Review for a City </h3>
+<div class="container">
+	<div class="row">
+		<div class="col-lg-7 offset-lg-1">
+			<form class="create-form" method="post" enctype="multipart/form-data">{% csrf_token %}
 
+				<!-- title -->
+				<div class="form-group">
+					<label for="id_city">City</label>
+					<input class="form-control" type="text" name="City" id="id_city" placeholder="City" required autofocus>
+				</div>
 
+				<!-- Body -->
+				<div class="form-group">
+					<label for="id_body">Comments</label>
+					<textarea class="form-control" rows="10" type="text" name="body" id="id_body" placeholder="Add Comments about this City..." required></textarea>
+				</div>
+
+				<!-- Image -->
+				<div class="form-group">
+					<label for="id_rating">Rating</label>
+					<input  type="number" name="rating" id="id_rating" required>
+				</div>
+
+        <div class="form-group">
+          <label for="id_ratingtype">Rating Type</label>
+          <input  type="radio" name="ratingtype" id="id_ratingtype" required>
+        </div>
+
+				<!-- Submit btn -->
+				<button class="submit-button btn btn-lg btn-primary btn-block" type="submit">POST</button>
+			</form>
+		</div>
+	</div>
+</div>
 
 
 
