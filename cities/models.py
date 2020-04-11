@@ -24,8 +24,8 @@ class Reviews(models.Model):
 	City 					= models.CharField(max_length=50, null=False, blank=False, default="NoWhere")
 	Comments 				= models.TextField(max_length=5000, null=True, blank=True, default="")
 	Rating		 			= models.IntegerField(blank=False, null=False, default="-1")
-	date_added 				= models.DateTimeField(auto_now_add=True, verbose_name="date published", default=datetime.now())
-	date_updated 			= models.DateTimeField(auto_now=True, verbose_name="date updated", default=datetime.now())
+	date_added 				= models.DateTimeField(auto_now_add=True, verbose_name="date published")
+	date_updated 			= models.DateTimeField(auto_now=True, verbose_name="date updated")
 	author 					= models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
 	slug 					= models.SlugField(blank=True, unique=True)
 
