@@ -1,6 +1,5 @@
 {% extends 'base.html' %}
 {% block content %}
-{% load crispy_forms_tags %}
 
 <style type="text/css">
   .create-form {
@@ -20,13 +19,36 @@
 <div class="container">
 	<div class="row">
 		<div class="col-lg-7 offset-lg-1">
-			<form class="create-form" method="POST">{% csrf_token %}
-        {% crispy form %}
-				<button class="submit-button btn btn-lg btn-primary btn-block" type="submit">Add Review</button>
+			<form class="create-form" method="post">{% csrf_token %}
+
+				<!-- title -->
+				<div class="form-group">
+					<label for="id_city">City</label>
+					<input class="form-control" type="text" name="City" id="id_city" placeholder="City" required autofocus>
+				</div>
+
+				<!-- Body -->
+				<div class="form-group">
+					<label for="id_body">Comments</label>
+					<textarea class="form-control" rows="10" type="text" name="body" id="id_body" placeholder="Add Comments about this City..." required></textarea>
+				</div>
+
+				<!-- Image -->
+				<div class="form-group">
+					<label for="id_rating">Rating</label>
+					<input  type="number" name="rating" id="id_rating" required>
+				</div>
+
+				<!-- Submit btn -->
+				<button class="submit-button btn btn-lg btn-primary btn-block" type="submit">POST</button>
 			</form>
 		</div>
 	</div>
 </div>
+
+
+
+
 
 
 {% endblock content %}

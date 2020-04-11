@@ -5,4 +5,4 @@ from cities.models import CityReviews
 class CreateReviewForm(forms.ModelForm):
     class Meta:
         model = CityReviews
-        fields = ['City','Comments', 'Rating', 'ReviewType']
+        fields = ['City','Comments', 'Rating']
