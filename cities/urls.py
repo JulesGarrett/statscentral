@@ -1,5 +1,5 @@
 from django.urls import path
-from cities.views import search_cities
+from cities.views import search_cities, create_review
 
 app_name = 'blog'
 
