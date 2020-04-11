@@ -19,6 +19,9 @@ def home_screen_view(request):
 
 def search_cities(request):
     context = {}
+    if request.GET:
+        query = request.GET['q']
+        context['query'] = str(query)
     context['cities'] = search_city_match()
     return render(request, 'cities/search.html', context)
 
