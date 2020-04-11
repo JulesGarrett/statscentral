@@ -1,10 +1,11 @@
 from django.urls import path
-from cities.views import search_cities
+from cities.views import search_cities, review
 
 app_name = 'cities'
 
 urlpatterns = [
     path('search', search_cities, name="search"),
+    path('review', review, name="review"),
  ]
 
 
