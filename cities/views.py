@@ -1,6 +1,9 @@
 from django.shortcuts import render
 from django.db import connection
 # from cities.models import Cities, Reviews
+from cities.models import CityReviews
+from cities.forms import CreateReviewForm
+from account.models import Account
 
 ######################################
 #         Helper Functions           #
@@ -47,4 +50,15 @@ def search_cities(request):
 
 def create_review(request):
     context = {}
+    user = request.user
+    if not user.is_authenticated:
+        return redirect('home')
+    form = CreateReviewForm(request.POST or None)
+    if form.is_valid():
+        obj = form.save(commit=False)
+        author = Account.objects.filter(email=user.email).first()
+        obj.author = author
+        obj.save()
+        form = CreateReviewForm
+    context['form'] = form
     return render(request, "cities/create_review.html", context)

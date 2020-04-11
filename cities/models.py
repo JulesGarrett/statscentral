@@ -29,6 +29,16 @@ class CityReviews(models.Model):
 	author 					= models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
 	slug 					= models.SlugField(blank=True, unique=True)
 
+    OverallCity = 1
+    School = 2
+    Military = 3
+    ReviewType = (
+        (OverallCity, 'City'),
+        (School, 'School'),
+        (Military, 'Military'),
+    )
+    ReviewType 				= models.PositiveSmallIntegerField(choices=ReviewType, null=False, blank=False, default='1')
+
 	def __str__(self):
 		return str(self.City) + str(author)
 
