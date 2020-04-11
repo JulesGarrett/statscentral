@@ -53,12 +53,12 @@ def create_review(request):
     user = request.user
     if not user.is_authenticated:
         return redirect('home')
-    form = CreateReviewForm(request.POST or None)
+    form = CreateReviewForm(request.POST)
     if form.is_valid():
         obj = form.save(commit=False)
         author = Account.objects.filter(email=user.email).first()
         obj.author = author
         obj.save()
-        form = CreateReviewForm
+        form = CreateReviewForm()
     context['form'] = form
     return render(request, "cities/create_review.html", context)
