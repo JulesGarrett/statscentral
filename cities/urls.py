@@ -1,20 +1,9 @@
 from django.urls import path
-from cities.views import search_cities, review
+from cities.views import search_cities, create_review
 
 app_name = 'cities'
 
 urlpatterns = [
     path('search', search_cities, name="search"),
-    path('review', review, name="review"),
+    path('create_review', create_review, name="create_review"),
  ]
-
-
-
-# def search_city_match(query=None):
-#     all_cities = []
-#     cities = Cities.objects.filter(
-#     			Q(City__contains=query)
-#     			).distinct()
-#     for city in cities:
-#         all_cities.append(city)
-#     return all_cities

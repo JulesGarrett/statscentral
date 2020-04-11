@@ -45,6 +45,6 @@ def search_cities(request):
         context['cities'] = search_city_match(query)
     return render(request, 'cities/search.html', context)
 
-def review(request):
+def create_review(request):
     context = {}
-    return render(request, "cities/review.html", context)
+    return render(request, "cities/create_review.html", context)
