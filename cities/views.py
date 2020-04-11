@@ -17,3 +17,7 @@ def get_cities_sql():
         cursor.execute("SELECT * FROM cities_cities WHERE City NOT NULL LIMIT 10;")
         cites = dictfetchall(cursor)	#[{'Game_ID': 1, 'Description': "...", Image:"...", ...}, {'Game_ID': 2, 'Description': "...", Image:"..."}...]
     return cites
+
+def create_review(request):
+    context = {}
+    return render(request, 'cities/home.html')
