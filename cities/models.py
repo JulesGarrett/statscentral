@@ -32,11 +32,7 @@ class CityReviews(models.Model):
     OverallCity = 1
     School = 2
     Military = 3
-    ReviewType = (
-        (OverallCity, 'City'),
-        (School, 'School'),
-        (Military, 'Military'),
-    )
+    ReviewType = ((OverallCity, 'City'),(School, 'School'),(Military, 'Military'),)
     ReviewType 				= models.PositiveSmallIntegerField(choices=ReviewType, null=False, blank=False, default='1')
 
 	def __str__(self):
