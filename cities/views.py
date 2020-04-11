@@ -52,8 +52,6 @@ def search_cities(request):
 def create_review(request):
     context = {}
     user = request.user
-    if not user.is_authenticated:
-        return redirect('home')
     form = CreateReviewForm(request.POST)
     if form.is_valid():
         obj = form.save(commit=False)
