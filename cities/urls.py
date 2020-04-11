@@ -5,5 +5,4 @@ app_name = 'blog'
 
 urlpatterns = [
     path('search', search_cities, name="search"),
-    path('review', create_review, name="make_review"),
  ]
