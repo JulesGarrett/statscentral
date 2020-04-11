@@ -3,6 +3,14 @@ from django.db import connection
 # from cities.models import Cities, Reviews
 
 # Create your views here.
+def dictfetchall(cursor):
+    "Return all rows from a cursor as a dict"
+    columns = [col[0] for col in cursor.description]
+    return [
+        dict(zip(columns, row))
+        for row in cursor.fetchall()
+    ]
+
 def home_screen_view(request):
     context = {}
     return render(request, "cities/home.html", context)
