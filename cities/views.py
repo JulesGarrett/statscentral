@@ -50,7 +50,6 @@ def search_cities(request):
 
 
 def create_review(request):
-
 	context = {}
 
 	user = request.user
@@ -63,7 +62,6 @@ def create_review(request):
 		author = Account.objects.filter(email=request.user.email).first()
 		obj.author = author
 		obj.save()
-		form = CreateReviewForm()
 
 	context['form'] = form
 
