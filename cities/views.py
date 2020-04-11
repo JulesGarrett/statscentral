@@ -30,11 +30,11 @@ def get_cities_sql():
     return cites
 
 
-def get_one_city(city_name):
-    with connection.cursor() as cursor:
-        cursor.execute("SELECT City, Sum(Population) AS Population FROM `cities_cities` WHERE City = "+str(city_name)+" group by City Limit 10;")
-        cites = dictfetchall(cursor)
-    return cites
+# def get_one_city(city_name):
+#     with connection.cursor() as cursor:
+#         cursor.execute("SELECT City, Sum(Population) AS Population FROM `cities_cities` WHERE City = "+str(city_name)+" group by City Limit 10;")
+#         cites = dictfetchall(cursor)
+#     return cites
 
 
 # def city_details(request, city_name):
