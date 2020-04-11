@@ -19,7 +19,7 @@ def home_screen_view(request):
 
 def search_cities(request):
     context = {}
-    context['cities'] = get_cities_sql()
+    context['cities'] = search_city_match()
     return render(request, 'cities/search.html', context)
 
 
@@ -29,6 +29,11 @@ def get_cities_sql():
         cites = dictfetchall(cursor)
     return cites
 
+def search_city_match(query=None):
+    with connection.cursor() as cursor:
+        cursor.execute("SELECT City, Sum(Population) AS Population FROM `cities_cities` WHERE LIKE '%query%' group by City Limit 10;")
+        cites = dictfetchall(cursor)
+    return cites
 
 # def get_one_city(city_name):
 #     with connection.cursor() as cursor:
