@@ -60,5 +60,6 @@ def create_review(request):
         author = Account.objects.filter(email=user.email).first()
         obj.author = author
         obj.save()
+        form = CreateReviewForm()
     context['form'] = form
     return render(request, "cities/create_review.html", context)
