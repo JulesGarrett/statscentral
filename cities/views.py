@@ -31,7 +31,7 @@ def get_cities_sql():
 
 def search_city_match(query=None):
     with connection.cursor() as cursor:
-        cursor.execute("SELECT City, Sum(Population) AS Population FROM `cities_cities` WHERE City LIKE '%query%' group by City Limit 10;")
+        cursor.execute("SELECT City, Sum(Population) AS Population FROM `cities_cities` WHERE City LIKE '%abbot%' group by City Limit 10")
         cites = dictfetchall(cursor)
     return cites
 
