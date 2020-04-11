@@ -53,7 +53,7 @@ def create_review(request):
 	context = {}
 
 	user = request.user
-    
+
 	form = CreateReviewForm(request.POST or None)
 	if form.is_valid():
 		obj = form.save(commit=False)
