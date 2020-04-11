@@ -32,10 +32,10 @@ class CityReviews(models.Model):
 	def __str__(self):
 		return str(self.City) + str(author)
 
-@receiver(post_delete, sender=Reviews)
+@receiver(post_delete, sender=CityReviews)
 
 def pre_save_review_receiver(sender, instance, *args, **kwargs):
 	if not instance.slug:
 		instance.slug = slugify(instance.author.username + "-" + instance.City)
 
-pre_save.connect(pre_save_review_receiver, sender=Reviews)
+pre_save.connect(pre_save_review_receiver, sender=CityReviews)
