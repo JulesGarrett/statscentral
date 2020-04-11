@@ -22,6 +22,6 @@ def search_cities(request):
 
 def get_cities_sql():
     with connection.cursor() as cursor:
-        cursor.execute("SELECT City, Sum(Population) FROM `cities_cities` group by City Limit 10;")
+        cursor.execute("SELECT City, Sum(Population) AS Population FROM `cities_cities` group by City Limit 10;")
         cites = dictfetchall(cursor)	#[{'Game_ID': 1, 'Description': "...", Image:"...", ...}, {'Game_ID': 2, 'Description': "...", Image:"..."}...]
     return cites
