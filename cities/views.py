@@ -37,11 +37,11 @@ def get_one_city(city_name):
     return cites
 
 
-# def city_details(request, city_name):
-#     context = {}
-#     city = get_one_city(city_name)
-#     if not city:
-#         raise Http404("City does not exist")
-#     context['city'] = city
-#     context['user'] = request.user
-#     return render(request, "cities/city_details.html", context)
+def city_details(request, city_name):
+    context = {}
+    city = get_one_city(city_name)
+    if not city:
+        raise Http404("City does not exist")
+    context['city'] = city
+    context['user'] = request.user
+    return render(request, "cities/city_details.html", context)
