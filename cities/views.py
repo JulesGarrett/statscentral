@@ -54,7 +54,6 @@ def create_review(request):
     user = request.user
     form = CreateReviewForm(request.POST or None)
     if form.is_valid():
-        print(form)
         obj = form.save(commit=False)
         author = Account.objects.filter(email=request.user.email).first()
         obj.author = author
