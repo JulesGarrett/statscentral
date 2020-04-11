@@ -45,10 +45,10 @@
 
 <div class="left-column col-lg-9 offset-lg-1">
 	<div class="search-bar mt-sm-2 mr-2">
-		<form method="get">
-			<intput type ="text" class = "form-control" name = "q" id="id_q" placeholder="Search for a City">
-		</form>
-	</div>
+  	<form method="get">
+  		<input class="form-control"  type="text" name="q" id="id_q" placeholder="Search...">
+  	</form>
+  </div>
 	<br>
 
 {% for city in cities %}
@@ -64,7 +64,6 @@
 
 <script type="text/javascript">
 	document.getElementById("id_q").value = "{{query}}"
-
 </script>
 
 

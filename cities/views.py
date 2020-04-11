@@ -22,21 +22,21 @@ def search_cities(request):
     if request.GET:
         query = request.GET['q']
         context['query'] = str(query)
-    context['cities'] = search_city_match()
+        context['cities'] = search_city_match(query)
     return render(request, 'cities/search.html', context)
 
 
 def get_cities_sql():
     with connection.cursor() as cursor:
         cursor.execute("SELECT City, Sum(Population) AS Population FROM `cities_cities` group by City Limit 10;")
-        cites = dictfetchall(cursor)
-    return cites
+        cities = dictfetchall(cursor)
+    return cities
 
 def search_city_match(query=None):
     with connection.cursor() as cursor:
         cursor.execute("SELECT City, Sum(Population) AS Population FROM `cities_cities` WHERE City LIKE '%" +str(query)+ "%' group by City Limit 10")
-        cites = dictfetchall(cursor)
-    return cites
+        cities = dictfetchall(cursor)
+    return cities
 
 # def get_one_city(city_name):
 #     with connection.cursor() as cursor:
