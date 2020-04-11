@@ -54,10 +54,9 @@ def create_review(request):
     user = request.user
     form = CreateReviewForm(request.POST or None)
     if form.is_valid():
-        obj = form.save(commit=False)
         author = Account.objects.filter(email=user.email).first()
-        obj.author = author
-        obj.save()
+        form.author = author
+        form.save()
         form = CreateReviewForm()
     context['form'] = form
     return render(request, "cities/create_review.html", context)
