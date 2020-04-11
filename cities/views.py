@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.db import connection
-from cities.models import Cities, Reviews
+# from cities.models import Cities, Reviews
 
 # Create your views here.
 def dictfetchall(cursor):
@@ -30,13 +30,10 @@ def get_cities_sql():
     return cites
 
 def search_city_match(query=None):
-    all_cities = []
-    cities = Cities.objects.filter(
-    			Q(City__contains=query)
-    			).distinct()
-    for city in cities:
-        all_cities.append(city)
-    return all_cities
+    with connection.cursor() as cursor:
+        cursor.execute("SELECT City, Sum(Population) AS Population FROM `cities_cities` WHERE City LIKE '%abbot%' group by City Limit 10")
+        cites = dictfetchall(cursor)
+    return cites
 
 # def get_one_city(city_name):
 #     with connection.cursor() as cursor:
