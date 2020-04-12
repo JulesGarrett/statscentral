@@ -73,7 +73,7 @@ def account_view(request):
 
 	context['account_form'] = form
 
-	reviews = CityReviews.objects.filter(author=request.user)
+	reviews = Reviews.objects.filter(author=request.user)
 	context['reviews'] = reviews
 
 	return render(request, "account/account.html", context)
