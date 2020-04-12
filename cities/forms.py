@@ -12,7 +12,7 @@ class UpdateReviewForm(forms.ModelForm):
 
     class Meta:
         model = CityReviews
-        fields = ['title', 'body', 'image']
+        fields = ['City','Comments', 'Rating']
 
     def save(self, commit=True):
         review = self.instance
