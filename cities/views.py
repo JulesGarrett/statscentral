@@ -65,7 +65,7 @@ def create_review(request):
 
 	return render(request, 'cities/create_review.html', context)
 
-def detail_blog_view(request, slug):
+def detail_review(request, slug):
 
 	context = {}
 	review = get_object_or_404(CityReviews, slug=slug)
