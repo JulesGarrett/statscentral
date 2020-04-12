@@ -24,6 +24,7 @@
         <p class="card-text">{{review.Rating|safe}}</p>
 			  {% if review.author == request.user %}
 			  	<a href="{% url 'cities:edit_review' review.slug %}" class="btn btn-primary">Update</a>
+		      <a class="btn btn-outline-danger" href="{% url 'cities:delete_review' review.slug%}"> Delete </a>
 			  {% endif %}
 			</div>
 			<div class="card-footer text-muted">
