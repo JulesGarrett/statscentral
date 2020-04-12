@@ -66,12 +66,11 @@ def create_review(request):
 	return render(request, 'cities/create_review.html', context)
 
 def detail_review(request, slug):
+    context = {}
+    review = get_object_or_404(CityReviews, slug=slug)
+    context['review'] = review
 
-	context = {}
-	review = get_object_or_404(CityReviews, slug=slug)
-	context['review'] = review
-
-	return render(request, 'cities/detail_review.html', context)
+    return render(request, 'cities/detail_review.html', context)
 
 
 def edit_review(request, slug):
