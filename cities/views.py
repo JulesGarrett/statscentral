@@ -63,6 +63,7 @@ def create_review(request):
 	context = {}
 
 	user = request.user
+
     if request.method == 'POST':
         form = CreateReviewForm(request.POST)
         if form.is_valid():
@@ -72,8 +73,7 @@ def create_review(request):
     else:
         form = forms.CreateReviewForm()
 
-	context['form'] = form
-
+    context['form'] = form
 	return render(request, 'cities/create_review.html', context)
 
 def detail_review(request, slug):
