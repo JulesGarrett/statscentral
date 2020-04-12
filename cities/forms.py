@@ -22,4 +22,4 @@ class UpdateReviewForm(forms.ModelForm):
 
         if commit:
             review.save()
-            return review
+        return review
