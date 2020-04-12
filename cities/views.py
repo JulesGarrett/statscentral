@@ -60,8 +60,8 @@ def search_cities(request):
 
 
 def create_review(request):
-	context = {}
-	user = request.user
+    context = {}
+    user = request.user
     if request.method == 'POST':
         form = CreateReviewForm(request.POST)
         if form.is_valid():
@@ -70,9 +70,8 @@ def create_review(request):
             obj.save()
     else:
         form = forms.CreateReviewForm()
-
     context['form'] = form
-	return render(request, 'cities/create_review.html', context)
+    return render(request, 'cities/create_review.html', context)
 
 def detail_review(request, slug):
     context = {}
