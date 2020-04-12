@@ -2,7 +2,7 @@ from django.contrib import admin
 
 # Register your models here.
 
-from cities.models import CityReviews
+from cities.models import Reviews
 
 
-admin.site.register(CityReviews)
+admin.site.register(Reviews)
