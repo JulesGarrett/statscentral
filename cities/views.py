@@ -107,6 +107,5 @@ def edit_review(request, slug):
 					"Rating": review.Rating,
 				}
 			)
-	context['form'] = form
-
-	return render(request, 'cities/edit_review.html', context)
+    context['form'] = form
+    return render(request, 'cities/edit_review.html', context)
