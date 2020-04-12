@@ -33,6 +33,6 @@ class CityReviews(models.Model):
 
 def pre_save_review_receiver(sender, instance, *args, **kwargs):
 	if not instance.slug:
-		instance.slug = slugify(instance.author + "-" + instance.City)
+		instance.slug = slugify(instance.author.username + "-" + instance.City)
 
 pre_save.connect(pre_save_review_receiver, sender=CityReviews)
