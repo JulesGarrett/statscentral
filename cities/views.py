@@ -84,7 +84,7 @@ def detail_review(request, slug):
 
 def edit_review(request, slug):
     logging.basicConfig(filename='mylog.log', level=logging.DEBUG)
-	context = {}
+    context = {}
 	user = request.user
 
 	review = get_object_or_404(CityReviews, slug=slug)
