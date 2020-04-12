@@ -95,8 +95,7 @@ def edit_review(request, slug):
         logging.debug('form=%s', form)
         if form.is_valid():
             logging.debug('form is valid')
-            obj = form.save(commit=False)
-            obj.save()
+            form.save()
             logging.debug('called form.save(), result=%s', myform)
             context['success_message'] = "Updated"
             review = obj
