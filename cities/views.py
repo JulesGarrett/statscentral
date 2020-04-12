@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect, get_object_or_404
 from django.db import connection
 # from cities.models import Cities, Reviews
 from cities.models import CityReviews
