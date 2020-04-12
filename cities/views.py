@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.db import connection
 # from cities.models import Cities, Reviews
-from cities.models import Reviews
+from cities.models import CityReviews
 from cities.forms import CreateReviewForm, UpdateReviewForm
 from account.models import Account
 
@@ -76,7 +76,7 @@ def create_review(request):
 
 def detail_review(request, slug):
     context = {}
-    review = get_object_or_404(Reviews, slug=slug)
+    review = get_object_or_404(CityReviews, slug=slug)
     context['review'] = review
 
     return render(request, 'cities/detail_review.html', context)
@@ -87,7 +87,7 @@ def edit_review(request, slug):
 	context = {}
 	user = request.user
 
-	review = get_object_or_404(Reviews, slug=slug)
+	review = get_object_or_404(CityReviews, slug=slug)
 	if request.POST:
 		form = UpdateReviewForm(request.POST or None, request.FILES or None, instance=review)
 		if form.is_valid():

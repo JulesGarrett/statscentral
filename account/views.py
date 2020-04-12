@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate, logout
 from account.forms import RegistrationForm, AccountAuthenticationForm, AccountUpdateForm
-from cities.models import Reviews
+from cities.models import CityReviews
 
 
 def registration_view(request):
@@ -73,7 +73,7 @@ def account_view(request):
 
 	context['account_form'] = form
 
-	reviews = Reviews.objects.filter(author=request.user.username)
+	reviews = CityReviews.objects.filter(author=request.user.username)
 	context['reviews'] = reviews
 
 	return render(request, "account/account.html", context)

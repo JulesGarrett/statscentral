@@ -19,20 +19,20 @@ class Cities(models.Model):
 		return self.City
 
 
-class Reviews(models.Model):
+class CityReviews(models.Model):
 	City 					= models.CharField(max_length=50, null=False, blank=False)
 	Comments 				= models.TextField(max_length=1000)
 	Rating		 			= models.IntegerField(blank=False, null=False)
-	author 					= models.CharField(max_length=30, null=False, blank=False)
+	author 					= models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
 	slug 					= models.SlugField(blank=True, unique=True)
 
 	def __str__(self):
 		return str(self.City) + str(self.author)
 
-@receiver(post_delete, sender=Reviews)
+@receiver(post_delete, sender=CityReviews)
 
 def pre_save_review_receiver(sender, instance, *args, **kwargs):
 	if not instance.slug:
 		instance.slug = slugify(instance.author + "-" + instance.City)
 
-pre_save.connect(pre_save_review_receiver, sender=Reviews)
+pre_save.connect(pre_save_review_receiver, sender=CityReviews)

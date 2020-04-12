@@ -1,17 +1,17 @@
 from django import forms
-from cities.models import Reviews
+from cities.models import CityReviews
 
 
 class CreateReviewForm(forms.ModelForm):
     class Meta:
-        model = Reviews
+        model = CityReviews
         fields = ['City','Comments', 'Rating']
 
 
 class UpdateReviewForm(forms.ModelForm):
 
     class Meta:
-        model = Reviews
+        model = CityReviews
         fields = ['City','Comments', 'Rating']
 
     def save(self, commit=True):
