@@ -90,7 +90,8 @@ def edit_review(request, slug):
     if request.POST:
         form = UpdateReviewForm(request.POST, instance=review)
         if form.is_valid():
-            form.save()
+            obj = form.save(commit=False)
+            obj.save()
             context['success_message'] = "Updated"
             review = obj
 
