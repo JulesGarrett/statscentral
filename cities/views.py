@@ -88,7 +88,7 @@ def edit_review(request, slug):
 
     review = get_object_or_404(CityReviews, slug=slug)
     if request.POST:
-        form = UpdateReviewForm(request.POST, instance=review)
+        form = UpdateReviewForm(request.POST or None, instance=review)
         if form.is_valid():
             obj = form.save(commit=False)
             obj.save()
