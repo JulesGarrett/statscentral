@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.db import connection
 # from cities.models import Cities, Reviews
 from cities.models import CityReviews
-from cities.forms import CreateReviewForm
+from cities.forms import CreateReviewForm, UpdateReviewForm
 from account.models import Account
 
 ######################################
@@ -71,22 +71,22 @@ def edit_review_view(request, slug):
 	context = {}
 	user = request.user
 
-	review = get_object_or_404(BlogPost, slug=slug)
+	review = get_object_or_404(CityReviews, slug=slug)
 	if request.POST:
-		form = UpdateBlogPostForm(request.POST or None, request.FILES or None, instance=blog_post)
+		form = UpdateReviewForm(request.POST or None, request.FILES or None, instance=review)
 		if form.is_valid():
 			obj = form.save(commit=False)
 			obj.save()
 			context['success_message'] = "Updated"
-			blog_post = obj
+			review = obj
 
-	form = UpdateBlogPostForm(
+	form = UpdateReviewForm(
 			initial={
-					"title": blog_post.title,
-					"body": blog_post.body,
-					"image": blog_post.image,
+					"City": review.City,
+					"Comments": review.Comments,
+					"Rating": review.Rating,
 				}
 			)
 	context['form'] = form
 
-	return render(request, 'blog/edit_blog.html', context)
+	return render(request, 'cities/edit_review.html', context)
