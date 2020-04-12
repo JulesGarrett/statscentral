@@ -27,7 +27,7 @@ class CityReviews(models.Model):
 	slug 					= models.SlugField(blank=True, unique=True)
 
 	def __str__(self):
-		return str(self.City) + str(self.author)
+		return str(self.City)
 
 @receiver(post_delete, sender=CityReviews)
 
