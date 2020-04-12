@@ -66,7 +66,7 @@ def create_review(request):
 	return render(request, 'cities/create_review.html', context)
 
 
-def edit_review_view(request, slug):
+def edit_review(request, slug):
 
 	context = {}
 	user = request.user
