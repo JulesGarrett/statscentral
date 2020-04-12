@@ -83,6 +83,7 @@ def detail_review(request, slug):
 
 
 def edit_review(request, slug):
+    import logging
     logging.basicConfig(filename='mylog.log', level=logging.DEBUG)
     context = {}
     user = request.user
