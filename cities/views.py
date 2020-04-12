@@ -83,16 +83,20 @@ def detail_review(request, slug):
 
 
 def edit_review(request, slug):
-
+    logging.basicConfig(filename='mylog.log', level=logging.DEBUG)
 	context = {}
 	user = request.user
 
 	review = get_object_or_404(CityReviews, slug=slug)
 	if request.POST:
+        logging.debug('request.method=POST')
 		form = UpdateReviewForm(request.POST or None, instance=review)
+        logging.debug('form=%s', form)
 		if form.is_valid():
+            logging.debug('form is valid')
 			obj = form.save(commit=False)
 			obj.save()
+            logging.debug('called form.save(), result=%s', myform)
 			context['success_message'] = "Updated"
 			review = obj
 
