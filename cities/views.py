@@ -64,11 +64,14 @@ def create_review(request):
 
 	user = request.user
 
-	form = CreateReviewForm(request.POST or None)
-	if form.is_valid():
-		obj = form.save(commit=False)
-		obj.author = request.user
-		obj.save()
+    if request.method == 'POST':
+        form = CreateReviewForm(request.POST)
+        if form.is_valid():
+            obj = form.save(commit=False)
+            obj.author = request.user
+            obj.save()
+    else:
+        form = forms.CreateReviewForm()
 
 	context['form'] = form
 
