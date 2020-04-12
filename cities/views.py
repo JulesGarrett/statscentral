@@ -62,11 +62,12 @@ def search_cities(request):
 def create_review(request):
     context = {}
     user = request.user
-    if request.method == 'POST':
+    if request.POST:
         form = CreateReviewForm(request.POST)
         if form.is_valid():
             obj = form.save(commit=False)
-            obj.author = request.user
+            author = Account.objects.filter(email=request.user.email).first()
+            obj.author = author
             obj.save()
     else:
         form = CreateReviewForm()
@@ -88,7 +89,7 @@ def edit_review(request, slug):
 
 	review = get_object_or_404(CityReviews, slug=slug)
 	if request.POST:
-		form = UpdateReviewForm(request.POST or None, request.FILES or None, instance=review)
+		form = UpdateReviewForm(request.POST or None, instance=review)
 		if form.is_valid():
 			obj = form.save(commit=False)
 			obj.save()
