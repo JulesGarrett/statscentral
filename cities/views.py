@@ -81,6 +81,15 @@ def detail_review(request, slug):
 
     return render(request, 'cities/detail_review.html', context)
 
+def delete_review(request, slug):
+    context = {}
+    obj = get_object_or_404(CityReviews, slug=slug)
+    context['object'] = obj
+    if request.POST:
+        review.delete()
+        return redirect('home')
+    return render(request, "cities/delete_review.html", context)
+
 
 def edit_review(request, slug):
     context = {}
