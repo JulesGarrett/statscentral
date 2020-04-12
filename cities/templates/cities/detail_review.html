@@ -23,7 +23,7 @@
 			  <h2 class="card-title">{{review.City}}</h2>
 			  <p class="card-text">{{review.Comments|safe}}</p>
 			  {% if review.author == request.user %}
-			  	<a href="{% url 'cities:edit' review.slug %}" class="btn btn-primary">Update</a>
+			  	<a href="{% url 'cities:edit_review' review.slug %}" class="btn btn-primary">Update</a>
 			  {% endif %}
 			</div>
 			<div class="card-footer text-muted">
