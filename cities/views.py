@@ -58,12 +58,11 @@ def search_cities(request):
         context['cities'] = search_city_match(query)
     return render(request, 'cities/search.html', context)
 
-    
+
 def create_review(request):
 	context = {}
 
 	user = request.user
-
     if request.method == 'POST':
         form = CreateReviewForm(request.POST)
         if form.is_valid():
