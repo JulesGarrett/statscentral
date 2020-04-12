@@ -10,11 +10,11 @@ class CreateReviewForm(forms.ModelForm):
 
 class UpdateReviewForm(forms.ModelForm):
 
-	class Meta:
-		model = CityReviews
-		fields = ['title', 'body', 'image']
+    class Meta:
+        model = CityReviews
+        fields = ['title', 'body', 'image']
 
-	def save(self, commit=True):
+    def save(self, commit=True):
         review = self.instance
         review.City = self.cleaned_data['City']
         review.Comments = self.cleaned_data['Comments']
