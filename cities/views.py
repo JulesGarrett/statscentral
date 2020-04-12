@@ -69,7 +69,7 @@ def create_review(request):
             obj.author = request.user
             obj.save()
     else:
-        form = forms.CreateReviewForm()
+        form = CreateReviewForm()
     context['form'] = form
     return render(request, 'cities/create_review.html', context)
 
