@@ -1,15 +1,24 @@
 {% extends 'base.html' %}
 {% block content %}
 
+<style type="text/css">
+   .delete_form {
+	    width: 100%;
+	    max-width: 100%;
+	    padding: 15px;
+	    margin: auto;
+  	}
+</style>
+
 <div class="container">
 	<div class="row">
 
 		<!-- Blog Post -->
 		<div class="card m-auto">
 			<div class="card-body mt-2 mb-2">
-        <form class="form-control" method="post" enctype="multipart/form-data"> {% csrf_token %}
+        <form class="delete_form" method="post" enctype="multipart/form-data"> {% csrf_token %}
           <h2> Do you want to delete the review "{{object.City}}"? </h2>
-          <p><input type="submit" name="delete_butns" value="Yes"/> <a href="../">Cancel</a></p>
+          <p><input class = "form-control" type="submit" name="delete_butns" value="Yes"/> <a href="../">Cancel</a></p>
         </form>
       </div>
     </div>
