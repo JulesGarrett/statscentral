@@ -18,10 +18,10 @@
 
 		<!-- Blog Post -->
 		<div class="card m-auto">
-			<img class="card-img-top" src="{{review.Rating}}">
 			<div class="card-body mt-2 mb-2">
 			  <h2 class="card-title">{{review.City}}</h2>
 			  <p class="card-text">{{review.Comments|safe}}</p>
+        <p class="card-text">{{review.Rating|safe}}</p>
 			  {% if review.author == request.user %}
 			  	<a href="{% url 'cities:edit_review' review.slug %}" class="btn btn-primary">Update</a>
 			  {% endif %}
