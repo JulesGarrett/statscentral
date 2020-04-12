@@ -88,11 +88,11 @@
       {% if reviews %}
         <ul class="list-group">
         {% for rev in reviews %}
-          <a href="{% url cities:edit rev.slug %}" style="text-decoration: none;"><li class="list-group-item">{{rev}}</li></a>
+          <a href="{% url cities:detail rev.slug %}" style="text-decoration: none;"><li class="list-group-item">{{rev}}</li></a>
         {% endfor %}
         </ul>
       {% else %}
-        <p>You have no blog posts. Create a post <a href="{% url 'cities:create_review' %}">here</a>.</p>
+        <p>You have no reviews posts. Create a review <a href="{% url 'cities:create_review' %}">here</a>.</p>
       {% endif %}
     </div>
   </div>
