@@ -36,7 +36,7 @@ def get_city_by_id(id=None):
     with connection.cursor() as cursor:
         cursor.execute("SELECT * FROM `cities_cities` WHERE CITYID = "+str(id))
         city = dictfetchall(cursor)
-    return city
+    return city[0]
 
 
 ######################################
