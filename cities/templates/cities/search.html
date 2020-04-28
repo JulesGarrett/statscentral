@@ -45,7 +45,9 @@
 
 
 
-<div class="card m-auto" style="width: 100%">
+<div class="container">
+	<div class="card m-auto" style="width: 100%">
+		<div class="card-body">
 	<h3> Search for a City </h3>
 	<p> Start type in the name or partial name of a city you are interested in learning more. </p>
 	<div class="search-bar">
@@ -56,13 +58,16 @@
   	</form>
   </div>
 	<br>
-</div>
+	</div>
+	</div>
+
 
 {% for city in cities %}
   <div class="blog-post-container">
     <a href="{% url 'cities:city_detail' city.CityID %}" style="text-decoration: none;"><li class="list-group-item">{{city.City}}</li></a>
   </div>
 {% endfor %}
+</div>
 
 <script type="text/javascript">
 	document.getElementById("id_q").value = "{{query}}"
