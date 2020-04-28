@@ -54,8 +54,7 @@
 {% for city in cities %}
 
   <div class="blog-post-container">
-    <h5> {{city.City}} </h5>
-    <p>Population: {{city.Population}}</p>
+    <a href="{% url 'cities:detail' city.CityID %}" style="text-decoration: none;"><li class="list-group-item">{{city}}</li></a>
   </div>
 
 {% endfor %}

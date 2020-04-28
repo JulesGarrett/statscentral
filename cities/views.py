@@ -17,6 +17,7 @@ def dictfetchall(cursor):
         for row in cursor.fetchall()
     ]
 
+
 def get_cities_sql():
     with connection.cursor() as cursor:
         cursor.execute("SELECT City, Sum(Population) AS Population FROM `cities_cities` group by City Limit 10;")
@@ -26,19 +27,16 @@ def get_cities_sql():
 
 def search_city_match(query=None):
     with connection.cursor() as cursor:
-        cursor.execute("SELECT City, Sum(Population) AS Population FROM `cities_cities` WHERE City LIKE '%" +str(query)+ "%' group by City Limit 10")
+        cursor.execute("SELECT * FROM `cities_cities` WHERE City LIKE '%" +str(query)+ "%' Limit 10")
         cities = dictfetchall(cursor)
     return cities
 
-def insert_review(form, username):
-    city = form.City
-    comments = form.Comments
-    rating = form.rating
 
+def get_city_by_id(id=None):
     with connection.cursor() as cursor:
-        cursor.execute('INSERT INTO cities_reviews (City, Comments, Rating, author, slug) VALUES ("'+str(city)+'", "'+str(comments)+'", '+str(rating)+', "'+str(username)+'", "'+str(city)+str(username)+'");')
-        cities = dictfetchall(cursor)
-    return cities
+        cursor.execute("SELECT * FROM `cities_cites` WHERE CITYID = "+str(id))
+        city = dictfetchall(cursor)
+    return city
 
 
 ######################################
@@ -59,6 +57,14 @@ def search_cities(request):
     return render(request, 'cities/search.html', context)
 
 
+def detail_city(request, id):
+    context = {}
+    city = get_city_by_id(id)
+    context['city'] = city
+    return render(request, 'cities/city_detail.html', context)
+
+
+############### REVIEW ###############
 def create_review(request):
     context = {}
     user = request.user
@@ -74,12 +80,13 @@ def create_review(request):
     context['form'] = form
     return render(request, 'cities/create_review.html', context)
 
+
 def detail_review(request, slug):
     context = {}
     review = get_object_or_404(CityReviews, slug=slug)
     context['review'] = review
-
     return render(request, 'cities/detail_review.html', context)
+
 
 def delete_review(request, slug):
     context = {}
