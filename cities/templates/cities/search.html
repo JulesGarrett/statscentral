@@ -63,7 +63,7 @@
 
 	{% for city in cities %}
 	  <div class="blog-post-container">
-	    <a href="{% url 'cities:city_detail' city.CityID %}" style="text-decoration: none;"><li class="list-group-item">{{city.City}}</li></a>
+	    <a href="{% url 'cities:city_detail' city.CityID %}" style="text-decoration: none; color: #5bc0de;"><li class="list-group-item">{{city.City}}</li></a>
 	  </div>
 	{% endfor %}
 </div>
