@@ -43,33 +43,22 @@
 
 </style>
 
-<div class="input-group mb-3">
-		<form method="get">
-		  <input type="text" class="form-control" name="q" id="id_q" placeholder="Search by City Name..." aria-label="Recipient's username" aria-describedby="basic-addon2">
-		  <div class="input-group-append">
-	    <button class="btn btn-outline-secondary" type="submit">Search</button>
-		</form>
-  </div>
-</div>
+<form >
+	<input class="form-control" type="text" placeholder="Search" aria-label="Search">
+	<button class="btn btn-mdb-color btn-rounded btn-sm my-0 ml-sm-2" type="submit">Search</button>
+</form>
 
 
 
-
-
-
-
-
-
-
-<!-- <div class="col-md-3 offset-md-3">
+<div class="col-md-3 offset-md-3">
 	<div class="search-bar mt-sm-4 mr-2">
-
-  		<input class="form-control"  type="text" >
+  	<form method="get" class="form-inline mr-auto">
+  		<input class="form-control"  type="text" name="q" id="id_q" placeholder="Search by City Name...">
 			<br>
-			<button class="submit-button btn btn-sm btn-primary btn-block" type="submit">Search</button>
-
+			<button class="btn aqua-gradient btn-rounded btn-sm my-0" type="submit">Search</button>
+  	</form>
   </div>
-	<br> -->
+	<br>
 
 {% for city in cities %}
 
