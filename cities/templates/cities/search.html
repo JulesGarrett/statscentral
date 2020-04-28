@@ -17,7 +17,8 @@
 
 	.blog-post-container{
 		background-color: #fff;
-		margin-bottom: 20px;
+		margin-bottom: 10px;
+		margin-top: 10px;
 		width: 100%;
 	}
 	.create-post-bar{
@@ -48,25 +49,22 @@
 <div class="container">
 	<div class="card m-auto" style="width: 100%">
 		<div class="card-body">
-	<h3> Search for a City </h3>
-	<p> Start type in the name or partial name of a city you are interested in learning more. </p>
-	<div class="search-bar">
-  	<form method="get" class="form-inline mr-auto">
-  		<input class="form-control"  type="text" name="q" id="id_q" placeholder="Search by City Name...">
-			<br>
-			<button class="btn btn-outline-info" type="submit">Search</button>
-  	</form>
-  </div>
-	<br>
-	</div>
+			<h3> Search for a City </h3>
+				<div class="search-bar">
+			  	<form method="get" class="form-inline mr-auto">
+			  		<input class="form-control"  type="text" name="q" id="id_q" placeholder="Search by City Name...">
+						<br>
+						<button class="btn btn-outline-info" type="submit">Search</button>
+			  	</form>
+			  </div>
+		</div>
 	</div>
 
-
-{% for city in cities %}
-  <div class="blog-post-container">
-    <a href="{% url 'cities:city_detail' city.CityID %}" style="text-decoration: none;"><li class="list-group-item">{{city.City}}</li></a>
-  </div>
-{% endfor %}
+	{% for city in cities %}
+	  <div class="blog-post-container">
+	    <a href="{% url 'cities:city_detail' city.CityID %}" style="text-decoration: none;"><li class="list-group-item">{{city.City}}</li></a>
+	  </div>
+	{% endfor %}
 </div>
 
 <script type="text/javascript">
