@@ -27,7 +27,7 @@ def get_cities_sql():
 
 def search_city_match(query=None):
     with connection.cursor() as cursor:
-        cursor.execute("SELECT * FROM `cities_cities` WHERE City LIKE '%" +str(query)+ "%' Limit 10")
+        cursor.execute("SELECT City, CityID FROM `cities_cities` WHERE City LIKE '%" +str(query)+ "%' group by CityID Limit 10")
         cities = dictfetchall(cursor)
     return cities
 
