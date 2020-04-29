@@ -42,7 +42,7 @@ margin: auto;
 	<div class="row">
 
 		<!-- Blog Post -->
-		<div class="card m-auto" style="width: 80%">
+		<div class="card m-auto" style="width: 60%">
 			<div class="card-body">
 				<form class="form-signin" method="post">{% csrf_token %}
 
@@ -70,13 +70,14 @@ margin: auto;
 
 				</form>
 			</div>
+			<div class="d-flex flex-column">
+			   <a class='m-auto' style="color: #17a2b8" href="{% url 'password_reset' %}">Forgot password</a>
+			</div>
 		</div>
 	</div>
 </div>
 
-<div class="d-flex flex-column">
-   <a class='m-auto' style="color: #17a2b8" href="{% url 'password_reset' %}">Forgot password</a>
-</div>
+
 
 
 {% endblock content %}
