@@ -78,10 +78,10 @@
               <p style="color:green; text-align: center;">{{success_message}}</p>
             {% endif  %}
 
-            <button class="btn btn-lg btn-primary btn-block" type="submit">Save changes</button>
+            <button class="btn btn-lg btn-info btn-block" type="submit">Save changes</button>
           </form>
           <div class="d-flex flex-column">
-             <a class='m-auto' href="{% url 'password_change' %}">Change password</a>
+             <a class='m-auto' style ="color: #17a2b8" href="{% url 'password_change' %}">Change password</a>
           </div>
         </div>
       </div>
@@ -93,11 +93,11 @@
           {% if reviews %}
             <ul class="list-group">
             {% for rev in reviews %}
-              <a href="{% url 'cities:detail' rev.slug %}" style="text-decoration: none;"><li class="list-group-item">{{rev}}</li></a>
+              <a href="{% url 'cities:detail' rev.slug %}" style="text-decoration: none; color: #17a2b8"><li class="list-group-item">{{rev}}</li></a>
             {% endfor %}
             </ul>
             {% else %}
-              <p>You have no reviews posts. Create a review <a href="{% url 'cities:create_review' %}">here</a>.</p>
+              <p>You have no reviews posts. Create a review <a href="{% url 'cities:create_review' %}" style="color: #17a2b8">here</a>.</p>
             {% endif %}
           </div>
         </div>
