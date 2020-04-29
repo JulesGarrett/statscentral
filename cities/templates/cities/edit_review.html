@@ -55,7 +55,9 @@
 
 <div class="container">
 	<div class="row">
-		<div class="col-lg-7 offset-lg-1">
+		<div class="card m-auto" style="width: 100%">
+      <div class="card-body">
+        <h3 class="card-title" style="color: #17a2b8"> Edit Review for {{form.initial.City}} </h3>
 
 			{% if success_message %}
 				<h3 style="color:green; text-align: center;">{{success_message}}</h3>
@@ -97,8 +99,9 @@
 				{% endif %}
 
 				<!-- Submit btn -->
-				<button class="submit-button btn btn-lg btn-primary btn-block" type="submit">Update</button>
+				<button class="btn btn-info btn-lg btn-block" type="submit">Update</button>
 			</form>
+      </div>
 		</div>
 	</div>
 </div>
