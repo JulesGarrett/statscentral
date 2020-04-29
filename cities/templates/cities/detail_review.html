@@ -25,13 +25,13 @@
 		<div class="card m-auto" style="width: 100%">
 			<div class="card-body">
 			  <h2 class="card-title" style="color: #17a2b8">{{review.City}}</h2>
-				<h5 class='card-title' style = "text-indent : 5em;">Comments</h5>
-			  <p class="card-text" style = "text-indent : 8em;">{{review.Comments|safe}}</p>
-				<h5 class='card-title' style = "text-indent : 5em;">Rating</h5>
-        <p class="card-text" style = "text-indent : 8em;">{{review.Rating|safe}}</p>
+				<h5 class='card-title' style = "text-indent : 1em;">Comments</h5>
+			  <p class="card-text" style = "text-indent : 4em;">{{review.Comments|safe}}</p>
+				<h5 class='card-title' style = "text-indent : 1em;">Rating</h5>
+        <p class="card-text" style = "text-indent : 4em;">{{review.Rating|safe}}</p>
 			  {% if review.author == request.user %}
-			  	<a href="{% url 'cities:edit_review' review.slug %}" class="btn btn-info btn-lg">Update</a>
-		      <a class="btn btn-outline-warning btn-lg" href="{% url 'cities:delete_review' review.slug%}"> Delete </a>
+			  	<a href="{% url 'cities:edit_review' review.slug %}" class="btn btn-info btn-lg btn-block">Update</a>
+		      <a class="btn btn-outline-warning btn-lg btn-block" href="{% url 'cities:delete_review' review.slug%}"> Delete </a>
 			  {% endif %}
 			</div>
 		</div>
