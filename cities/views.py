@@ -113,10 +113,10 @@ def edit_review(request, slug):
 
     form = UpdateReviewForm(
 			initial={
-					"City": review.City,
 					"Comments": review.Comments,
 					"Rating": review.Rating,
 				}
 			)
     context['form'] = form
+    context['city'] = review.City
     return render(request, 'cities/edit_review.html', context)
