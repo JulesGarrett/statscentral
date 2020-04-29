@@ -89,7 +89,7 @@
     <div class="col">
       <div class="card m-auto" style="width: 100%">
         <div class="card-body">
-          <h3 class="card-title" style="color: #17a2b8">Reviews:</h3>
+          <h3 class="card-title" style="color: #17a2b8">My Reviews:</h3>
           {% if reviews %}
             <ul class="list-group">
             {% for rev in reviews %}
@@ -97,7 +97,7 @@
             {% endfor %}
             </ul>
             {% else %}
-              <p>You have no reviews posts. Create a review <a href="{% url 'cities:create_review' %}" style="color: #17a2b8">here</a>.</p>
+              <p>You have no reviews. Create a review <a href="{% url 'cities:create_review' %}" style="color: #17a2b8">here</a>.</p>
             {% endif %}
           </div>
         </div>
