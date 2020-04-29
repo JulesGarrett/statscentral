@@ -37,35 +37,45 @@ margin: auto;
 }
 </style>
 
+<br>
+<div class="container">
+	<div class="row">
 
-<form class="form-signin" method="post">{% csrf_token %}
+		<!-- Blog Post -->
+		<div class="card m-auto" style="width: 100%">
+			<div class="card-body">
+				<form class="form-signin" method="post">{% csrf_token %}
 
-<h1 class="h3 mb-3 font-weight-normal">Login</h1>
+				<h1 class="h3 mb-3 font-weight-normal" style="color: #17a2b8">Login</h1>
 
-<input type="email" name="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+				<input type="email" name="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
 
-<input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" required>
+				<input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" required>
 
-{% for field in login_form %}
-		<p>
-			{% for error in field.errors %}
-				<p style="color: red">{{ error }}</p>
-			{% endfor %}
-		</p>
-{% endfor %}
-{% if login_form.non_field_errors %}
-	<div style="color: red">
-		<p>{{login_form.non_field_errors}}</p>
+				{% for field in login_form %}
+						<p>
+							{% for error in field.errors %}
+								<p style="color: red">{{ error }}</p>
+							{% endfor %}
+						</p>
+				{% endfor %}
+				{% if login_form.non_field_errors %}
+					<div style="color: red">
+						<p>{{login_form.non_field_errors}}</p>
+					</div>
+
+				{% endif %}
+
+				<button class="btn btn-info btn-lg btn-block" type="submit">Log in</button>
+
+				</form>
+			</div>
+		</div>
 	</div>
-
-{% endif %}
-
-<button class="btn btn-lg btn-primary btn-block" type="submit">Log in</button>
-
-</form>
+</div>
 
 <div class="d-flex flex-column">
-   <a class='m-auto' href="{% url 'password_reset' %}">Forgot password</a>
+   <a class='m-auto' style="color: #17a2b8" href="{% url 'password_reset' %}">Forgot password</a>
 </div>
 
 
