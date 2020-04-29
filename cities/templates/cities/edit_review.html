@@ -59,48 +59,48 @@
       <div class="card-body">
         <h3 class="card-title" style="color: #17a2b8"> Edit Review for {{form.initial.City}} </h3>
 
-			{% if success_message %}
-				<h3 style="color:green; text-align: center;">{{success_message}}</h3>
-			{% endif %}
+  			{% if success_message %}
+  				<h3 style="color:green; text-align: center;">{{success_message}}</h3>
+  			{% endif %}
 
-			<form class="create-form" method="post" enctype="multipart/form-data">{% csrf_token %}
+  			<form class="create-form" method="post" enctype="multipart/form-data">{% csrf_token %}
 
-				<!-- title -->
-				<div class="form-group">
-					<label for="id_title">City</label>
-					<input class="form-control" type="text" name="City" id="id_title" placeholder="City" value="{{form.initial.City}}" required autofocus>
-				</div>
+  				<!-- title -->
+  				<div class="form-group">
+  					<label for="id_title">City</label>
+  					<input class="form-control" type="text" name="City" id="id_title" placeholder="City" value="{{form.initial.City}}" required autofocus>
+  				</div>
 
-				<!-- Body -->
-				<div class="form-group">
-					<label for="id_body">Comments</label>
-					<textarea class="form-control" rows="10" type="text" name="Comments" id="id_body" placeholder="Review for City"
-					required>{{form.initial.Comments}}</textarea>
-				</div>
+  				<!-- Body -->
+  				<div class="form-group">
+  					<label for="id_body">Comments</label>
+  					<textarea class="form-control" rows="10" type="text" name="Comments" id="id_body" placeholder="Review for City"
+  					required>{{form.initial.Comments}}</textarea>
+  				</div>
 
-				<!-- Image -->
-				<div class="form-group image-group" id="id_image_group">
-					<label for="id_rating">Rating</label>
-					<input class="form-control" type="text" name="Rating" id="id_rating" placeholder="Rating" value="{{form.initial.Rating}}" required autofocus>
-				</div>
+  				<!-- Image -->
+  				<div class="form-group image-group" id="id_image_group">
+  					<label for="id_rating">Rating</label>
+  					<input class="form-control" type="text" name="Rating" id="id_rating" placeholder="Rating" value="{{form.initial.Rating}}" required autofocus>
+  				</div>
 
 
-				{% for field in form %}
-					<p>
-						{% for error in field.errors %}
-							<p style="color: red">{{ error }}</p>
-						{% endfor %}
-					</p>
-				{% endfor %}
-				{% if form.non_field_errors %}
-					<div style="color: red">
-						<p>{{form.non_field_errors}}</p>
-					</div>
-				{% endif %}
+  				{% for field in form %}
+  					<p>
+  						{% for error in field.errors %}
+  							<p style="color: red">{{ error }}</p>
+  						{% endfor %}
+  					</p>
+  				{% endfor %}
 
-				<!-- Submit btn -->
-				<button class="btn btn-info btn-lg btn-block" type="submit">Update</button>
-			</form>
+  				{% if form.non_field_errors %}
+  					<div style="color: red">
+  						<p>{{form.non_field_errors}}</p>
+  					</div>
+  				{% endif %}
+
+				    <button class="btn btn-info btn-lg btn-block" type="submit">Update</button>
+			   </form>
       </div>
 		</div>
 	</div>
