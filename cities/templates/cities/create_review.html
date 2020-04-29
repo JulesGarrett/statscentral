@@ -17,33 +17,35 @@
 
 <div class="container">
 	<div class="row">
-		<div class="col-lg-6 offset-lg-1">
-      <h3> Create a Review for a City </h3>
-			<form class="create-form" method="post" enctype="multipart/form-data"> {% csrf_token %}
+		<div class="card m-auto" style="width: 100%">
+  		<div class="card-body">
+        <h3 class="card-title" style="color: #17a2b8"> Create a Review for a City </h3>
+  			<form class="create-form" method="post" enctype="multipart/form-data"> {% csrf_token %}
 
-				<!-- title -->
-				<div class="form-group">
-					<label for="id_city">City</label>
-					<input class="form-control" type="text" name="City" id="id_city" placeholder="City" required autofocus>
-				</div>
+  				<!-- title -->
+  				<div class="form-group">
+  					<label for="id_city">City</label>
+  					<input class="form-control" type="text" name="City" id="id_city" placeholder="City" required autofocus>
+  				</div>
 
-				<!-- Body -->
-				<div class="form-group">
-					<label for="id_body">Comments</label>
-					<textarea class="form-control" rows="10" type="text" name="Comments" id="id_body" placeholder="Add Comments about this City..." ></textarea>
-				</div>
+  				<!-- Body -->
+  				<div class="form-group">
+  					<label for="id_body">Comments</label>
+  					<textarea class="form-control" rows="10" type="text" name="Comments" id="id_body" placeholder="Add Comments about this City..." ></textarea>
+  				</div>
 
-				<!-- Rating -->
-				<div class="form-group">
-					<label for="id_rating">Rating on a scale of 1-10</label>
-					<input  type="number" name="Rating" id="id_rating" min = 1 max = 10 required>
-				</div>
+  				<!-- Rating -->
+  				<div class="form-group">
+  					<label for="id_rating">Rating on a scale of 1-10</label>
+  					<input  type="number" name="Rating" id="id_rating" min = 1 max = 10 required>
+  				</div>
 
-				<!-- Submit btn -->
-				<button class="btn btn-info btn-lg btn-block" type="submit">Submit</button>
-			</form>
+  				<!-- Submit btn -->
+  				<button class="btn btn-info btn-lg btn-block" type="submit">Submit</button>
+  			</form>
 		</div>
 	</div>
+</div>
 </div>
 
 
