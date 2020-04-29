@@ -5,12 +5,16 @@
 
 
 <style type="text/css">
-	.card{
-		max-width: 700px;
-	}
-	.card-body{
-		padding: 20px;
-	}
+  .create-form {
+	    width: 100%;
+	    max-width: 100%;
+	    padding: 15px;
+	    margin: auto;
+  	}
+
+  	.submit-button{
+  		max-width: 200px;
+  	}
 </style>
 
 <div class="container">
@@ -20,10 +24,12 @@
 		<div class="card m-auto" style="width: 100%">
 			<div class="card-body">
 			  <h2 class="card-title" style="color: #17a2b8">{{review.City}}</h2>
+				<h5 class='card-title'>Comments</h5> <br>
 			  <p class="card-text">{{review.Comments|safe}}</p>
+				<h5 class='card-title'>Rating</h5> <br>
         <p class="card-text">{{review.Rating|safe}}</p>
 			  {% if review.author == request.user %}
-			  	<a href="{% url 'cities:edit_review' review.slug %}" class="btn btn-info btn-lg btn-block">Update</a>
+			  	<a href="{% url 'cities:edit_review' review.slug %}" class="btn btn-info btn-lg">Update</a>
 		      <a class="btn btn-outline-warning" href="{% url 'cities:delete_review' review.slug%}"> Delete </a>
 			  {% endif %}
 			</div>
