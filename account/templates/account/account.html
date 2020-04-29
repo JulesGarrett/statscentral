@@ -47,53 +47,59 @@
 <div class="container">
 	<div class="row">
     <div class="col">
-      <form class="form-signin" method="post">{% csrf_token %}
+      <div class="card m-auto" style="width: 100%">
+        <div class="card-body">
+          <form class="form-signin" method="post">{% csrf_token %}
 
-        <h1 class="h3 mb-3 font-weight-normal">Change Account Details</h1>
+            <h3 class="card-title" style="color: #17a2b8">Change Account Details</h3>
 
-        <label for="inputEmail">Email:</label>
-        <input type="email" name="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus value={{account_form.initial.email}}>
+            <label for="inputEmail">Email:</label>
+            <input type="email" name="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus value={{account_form.initial.email}}>
 
-        <label for="inputEmail">Username:</label>
-        <input type="text" name="username" id="inputUsername" class="form-control" placeholder="Username" required
-        value="{{account_form.initial.username}}">
+            <label for="inputEmail">Username:</label>
+            <input type="text" name="username" id="inputUsername" class="form-control" placeholder="Username" required
+            value="{{account_form.initial.username}}">
 
-        {% for field in account_form %}
-            <p>
-              {% for error in field.errors %}
-                <p style="color: red">{{ error }}</p>
-              {% endfor %}
-            </p>
-        {% endfor %}
-        {% if account_form.non_field_errors %}
-          <div style="color: red">
-            <p>{{account_form.non_field_errors}}</p>
+            {% for field in account_form %}
+                <p>
+                  {% for error in field.errors %}
+                    <p style="color: red">{{ error }}</p>
+                  {% endfor %}
+                </p>
+            {% endfor %}
+            {% if account_form.non_field_errors %}
+              <div style="color: red">
+                <p>{{account_form.non_field_errors}}</p>
+              </div>
+
+            {% endif %}
+
+            {% if success_message %}
+              <p style="color:green; text-align: center;">{{success_message}}</p>
+            {% endif  %}
+
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Save changes</button>
+          </form>
+          <div class="d-flex flex-column">
+             <a class='m-auto' href="{% url 'password_change' %}">Change password</a>
           </div>
-
-        {% endif %}
-
-        {% if success_message %}
-          <p style="color:green; text-align: center;">{{success_message}}</p>
-        {% endif  %}
-
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Save changes</button>
-      </form>
-      <div class="d-flex flex-column">
-         <a class='m-auto' href="{% url 'password_change' %}">Change password</a>
+        </div>
       </div>
     </div>
     <div class="col">
-        <div class="review">
-          <h3 class="mb-3 font-weight-normal">Reviews:</h3>
+      <div class="card m-auto" style="width: 100%">
+        <div class="card-body">
+          <h3 class="card-title" style="color: #17a2b8">Reviews:</h3>
           {% if reviews %}
             <ul class="list-group">
             {% for rev in reviews %}
               <a href="{% url 'cities:detail' rev.slug %}" style="text-decoration: none;"><li class="list-group-item">{{rev}}</li></a>
             {% endfor %}
             </ul>
-          {% else %}
-            <p>You have no reviews posts. Create a review <a href="{% url 'cities:create_review' %}">here</a>.</p>
-          {% endif %}
+            {% else %}
+              <p>You have no reviews posts. Create a review <a href="{% url 'cities:create_review' %}">here</a>.</p>
+            {% endif %}
+          </div>
         </div>
       </div>
 
