@@ -53,6 +53,7 @@
 	}
 </style>
 
+<br>
 <div class="container">
 	<div class="row">
 		<div class="card m-auto" style="width: 100%">
@@ -65,7 +66,6 @@
 
   			<form class="create-form" method="post" enctype="multipart/form-data">{% csrf_token %}
 
-
   				<!-- Body -->
   				<div class="form-group">
   					<label for="id_body">Comments</label>
@@ -73,10 +73,10 @@
   					required>{{form.initial.Comments}}</textarea>
   				</div>
 
-  				<!-- Image -->
-  				<div class="form-group image-group" id="id_image_group">
+  				<!-- Rating -->
+  				<div class="form-group">
   					<label for="id_rating">Rating</label>
-  					<input class="form-control" type="text" name="Rating" id="id_rating" placeholder="Rating" value="{{form.initial.Rating}}" required autofocus>
+  					<input class="form-control" type="text" name="Rating" id="id_rating" min=1 max=10 placeholder="Rating" value="{{form.initial.Rating}}" required autofocus>
   				</div>
 
 
