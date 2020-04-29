@@ -108,7 +108,7 @@ def edit_review(request, slug):
         if form.is_valid():
             obj = form.save(commit=False)
             obj.save()
-            context['success_message'] = "Updated"
+            context['success_message'] = "Updated Review for "+str(review.City)
             review = obj
 
     form = UpdateReviewForm(
