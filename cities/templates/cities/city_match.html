@@ -50,15 +50,14 @@
 	<div class="card m-auto" style="width: 100%">
 		<div class="card-body">
 			<h2 class = "text-center" style="color: #17a2b8"> Find a City that Matches your Criteria </h2>
-				<div class="search-bar">
-			  	<form method="get">
-			  		<input class="form-control" style="width: 100%" type="text" name="q" id="id_q" placeholder="Search by City Name...">
-						<br>
-						<div class="col-xs-4 text-center">
-							<button class="btn btn-info" type="submit" style="width:33% ">Search For Cities</button>
-						</div>
-			  	</form>
-			  </div>
+      <form class="create-form" method="post" enctype="multipart/form-data"> {% csrf_token %}
+
+        <!-- title -->
+        <div class="form-group">
+          <label for="id_city">Enter min Population</label>
+          <input class="form-control" type="number" name="pop" placeholder="population" required autofocus>
+        </div>
+      </form>
 		</div>
 	</div>
 
