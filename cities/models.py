@@ -21,6 +21,7 @@ class Cities(models.Model):
 
 class CityReviews(models.Model):
 	City 					= models.CharField(max_length=50, null=False, blank=False)
+	State					= models.CharField(max_length=50, null=False, blank=False)
 	Comments 				= models.TextField(max_length=1000)
 	Rating		 			= models.IntegerField(blank=False, null=False)
 	author 					= models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
