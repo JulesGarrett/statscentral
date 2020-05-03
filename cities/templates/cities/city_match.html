@@ -54,21 +54,19 @@
 
         <!-- title -->
         <div class="form-group">
-          <label for="id_city">Enter Minimum Population</label>
+          <label>Enter Minimum Population</label>
           <input class="form-control" type="number" name="min_pop" placeholder="population" required autofocus>
         </div>
         <div class="form-group">
-          <label for="id_city">Enter Maximum Population</label>
+          <label>Enter Maximum Population</label>
           <input class="form-control" type="number" name="max_pop" placeholder="population" required autofocus>
         </div>
         <div class="form-group">
-          <label for="id_city">Enter Maximum Population</label>
-          <input class="form-control" type="range" name="max_pop" placeholder="population" min=0 max=10000000 required autofocus>
-        </div>
-        <div class="form-group">
-          <label for="id_city">Is being able to access military aid important?</label>
-          <input class="form-control" type="checkbox" name="miliatry" id="yes" value = True required autofocus>
-          <input class="form-control" type="checkbox" name="miliatry" id="no" value = False required autofocus>
+          <label>Is being able to access military aid important?</label>
+          <label for="yes">YES</label>
+          <input class="form-control" type="radio" name="miliatry" id="yes" value = "Yes" required autofocus>
+          <label for="no">NO</label>
+          <input class="form-control" type="radio" name="miliatry" id="no" value = "No" required autofocus>
         </div>
       </form>
 		</div>
