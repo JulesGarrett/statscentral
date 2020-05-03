@@ -120,3 +120,7 @@ def edit_review(request, slug):
     context['form'] = form
     context['city'] = review.City
     return render(request, 'cities/edit_review.html', context)
+
+def city_match(request):
+    context = {}
+    return render(request, "cities/city_match.html", context)

@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<style type="text/css">
+
+	@media (max-width: 768px) {
+		.right-column{
+			margin-left: 0px;
+		}
+	}
+
+	@media (min-width: 768px) {
+		.right-column{
+			margin-left: 20px;
+		}
+	}
+
+	.blog-post-container{
+		background-color: #fff;
+		margin-bottom: 10px;
+		margin-top: 10px;
+		width: 100%;
+	}
+	.create-post-bar{
+		background-color: #fff;
+		margin-bottom:20px;
+	}
+
+	.left-column{
+		padding:0px;
+	}
+
+	.right-column{
+		padding:0px;
+	}
+
+	.search-bar{
+		width:100%;
+	}
+	.form{
+		width:100%
+	}
+
+</style>
+
+
+
+<div class="container">
+	<br>
+	<div class="card m-auto" style="width: 100%">
+		<div class="card-body">
+			<h2 class = "text-center" style="color: #17a2b8"> Find a City that Matches your Criteria </h2>
+				<div class="search-bar">
+			  	<form method="get">
+			  		<input class="form-control" style="width: 100%" type="text" name="q" id="id_q" placeholder="Search by City Name...">
+						<br>
+						<div class="col-xs-4 text-center">
+							<button class="btn btn-info" type="submit" style="width:33% ">Search For Cities</button>
+						</div>
+			  	</form>
+			  </div>
+		</div>
+	</div>
+
+	{% for city in cities %}
+	  <div class="blog-post-container">
+	    <a href="{% url 'cities:city_detail' city.CityID %}" style="text-decoration: none; color: #17a2b8;"><li class="list-group-item">{{city.City}}</li></a>
+	  </div>
+	{% endfor %}
+</div>
+
+<script type="text/javascript">
+	document.getElementById("id_q").value = "{{query}}"
+</script>
+
+
+
+
+
+{% endblock content %}
