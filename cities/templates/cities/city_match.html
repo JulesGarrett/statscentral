@@ -52,21 +52,28 @@
 			<h2 class = "text-center" style="color: #17a2b8"> Find a City that Matches your Criteria </h2>
       <form class="create-form" method="post" enctype="multipart/form-data"> {% csrf_token %}
 
-        <!-- title -->
-        <div class="form-group">
-          <label>Enter Minimum Population</label>
-          <input class="form-control" type="number" name="min_pop" placeholder="population" required autofocus>
+        <div class ="row">
+          <div class="col">
+            <div class="form-group">
+              <label>Enter Minimum Population</label>
+              <input class="form-control" type="number" name="min_pop" placeholder="population" required autofocus>
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-group">
+              <label>Enter Maximum Population</label>
+              <input class="form-control" type="number" name="max_pop" placeholder="population" required autofocus>
+            </div>
+          </div>
         </div>
-        <div class="form-group">
-          <label>Enter Maximum Population</label>
-          <input class="form-control" type="number" name="max_pop" placeholder="population" required autofocus>
-        </div>
-        <div class="form-group">
-          <label>Is being able to access military aid important?</label><br>
-          <label style="display: inline-block;" for="yes">Yes</label>
-          <input class="form-control" style="display: inline-block;" type="radio" name="miliatry" id="yes" value = "Yes" required autofocus>
-          <label style="display: inline-block;" for="no">No</label>
-          <input class="form-control" style="display: inline-block;" type="radio" name="miliatry" id="no" value = "No" required autofocus>
+        <div class="row">
+          <div class="form-group">
+            <label>Is being able to access military aid important?</label><br>
+            <label style="display: inline-block;" for="yes">Yes</label>
+            <input class="form-control" style="display: inline-block;" type="radio" name="miliatry" id="yes" value = "Yes" required autofocus>
+            <label style="display: inline-block;" for="no">No</label>
+            <input class="form-control" style="display: inline-block;" type="radio" name="miliatry" id="no" value = "No" required autofocus>
+          </div>
         </div>
       </form>
 		</div>
