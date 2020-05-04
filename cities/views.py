@@ -4,6 +4,8 @@ from django.db import connection
 from cities.models import CityReviews
 from cities.forms import CreateReviewForm, UpdateReviewForm
 from account.models import Account
+from wordcloud import WordCloud, STOPWORDS
+
 
 ######################################
 #         Helper Functions           #
