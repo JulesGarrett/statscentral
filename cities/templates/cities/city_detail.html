@@ -20,15 +20,28 @@
 		<div class="card m-auto" style="width: 100%">
 			<div class="card-body">
         <h3 class="card-title" style="color: #17a2b8">{{city.City}}, {{city.State}}</h3>
-        <h6> OVERVIEW </h6>
-        <P> will put general data and graph? here </P>
-        <h6> MILITARY DATA </h6>
-        <P> will put military data and graph here </P>
-        <h6> SCHOOL DATA </h6>
-        <p> will put school data and graph here </p>
-        <h6> REVIEWS </h6>
-        <p> will put list of reviews here </p>
-        <iframe src="https://maps.google.com/maps?q='+{{city.City}}, {{city.State}}+'&hl=en&z=14&amp;output=embed" width="100%" height="400" frameborder="0" style="border:0" allowfullscreen></iframe>
+				<div class="row">
+					<div class="col">
+		        <h6> OVERVIEW </h6>
+		        <P> will put general data and graph? here </P>
+					</div>
+					<div class="col">
+						<iframe src="https://maps.google.com/maps?q='+{{city.City}}, {{city.State}}+'&hl=en&z=14&amp;output=embed" width="100%" height="400" frameborder="0" style="border:0" allowfullscreen></iframe>
+					</div>
+				</div>
+				<div class="row">
+	        <h6> MILITARY DATA </h6>
+	        <P> will put military data and graph here </P>
+				</div>
+				<div class="row">
+	        <h6> SCHOOL DATA </h6>
+	        <p> will put school data and graph here </p>
+				</div>
+				<div class="row">
+	        <h6> REVIEWS </h6>
+	        <p> will put list of reviews here </p>
+				</div>
+
 			</div>
 		</div>
 	</div>
