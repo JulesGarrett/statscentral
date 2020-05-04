@@ -27,7 +27,7 @@ def get_cities_sql():
 # query that is used to search for cities by name
 def search_city_match(query=None):
     with connection.cursor() as cursor:
-        cursor.execute("SELECT C_US_MilitaryCities.City_ID as CityID, C_US_MilitaryCities.City as City, C_UnitedStates.State as State FROM C_US_MilitaryCities left join C_UnitedStates on C_US_MilitaryCities.State_ID = C_UnitedStates.State_ID WHERE City LIKE '%" + str(query)+ "%' Limit 10")
+        cursor.execute("SELECT C_US_MilitaryCities.City_ID as CityID, C_US_MilitaryCities.City as City, C_UnitedStates.State as State FROM C_US_MilitaryCities left join C_UnitedStates on C_US_MilitaryCities.State_ID = C_UnitedStates.State_ID WHERE City LIKE '%" + str(query)+ "%' Limit 25")
         cities = dictfetchall(cursor)
     return cities
 
