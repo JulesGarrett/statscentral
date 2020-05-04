@@ -17,21 +17,23 @@ def dictfetchall(cursor):
         for row in cursor.fetchall()
     ]
 
-
+# old function that was used in old deliverable
 def get_cities_sql():
     with connection.cursor() as cursor:
         cursor.execute("SELECT City, Sum(Population) AS Population FROM `cities_cities` group by City Limit 10;")
         cities = dictfetchall(cursor)
     return cities
 
-
+# query that is used to search for cities by name
 def search_city_match(query=None):
     with connection.cursor() as cursor:
-        cursor.execute("SELECT City, CityID FROM `cities_cities` WHERE City LIKE '%" +str(query)+ "%' group by CityID Limit 10")
+        cursor.execute('''SELECT C_US_MilitaryCities.City as City, C_UnitedStates.State as State
+                            FROM C_US_MilitaryCities left join C_UnitedStates on C_US_MilitaryCities.State_ID = C_UnitedStates.State_ID
+                            WHERE City LIKE '%''' +str(query)+ '''%' Limit 10''')
         cities = dictfetchall(cursor)
     return cities
 
-
+# need to change to be large query with tons of joins
 def get_city_by_id(id=None):
     with connection.cursor() as cursor:
         cursor.execute("SELECT * FROM `cities_cities` WHERE CITYID = "+str(id))
