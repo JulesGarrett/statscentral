@@ -34,7 +34,7 @@ def search_city_match(query=None):
 # need to change to be large query with tons of joins
 def get_city_by_id(id=None):
     with connection.cursor() as cursor:
-        cursor.execute("SELECT * FROM `cities_cities` WHERE CITYID = "+str(id))
+        cursor.execute("SELECT * FROM C_US_MilitaryCities WHERE CITY_ID = "+str(id))
         city = dictfetchall(cursor)
     return city[0]
 
