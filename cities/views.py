@@ -40,6 +40,12 @@ def get_city_by_id(id=None):
         city = dictfetchall(cursor)
     return city[0]
 
+def get_population_by_id(id):
+        with connection.cursor() as cursor:
+            cursor.execute("SELECT City_ID, SUM(Population) AS Pop FROM C_Zip WHERE CITY_ID = "+str(id)+" GROUP BY City_ID")
+            id_pop = dictfetchall(cursor)
+        return id_pop[0]
+
 
 ######################################
 #          View Functions            #
@@ -62,7 +68,9 @@ def search_cities(request):
 def detail_city(request, id):
     context = {}
     city = get_city_by_id(id)
+    cityid_pop = get_population_by_id(id)
     context['city'] = city
+    context['cityid_pop'] = cityid_pop
     return render(request, 'cities/city_detail.html', context)
 
 
