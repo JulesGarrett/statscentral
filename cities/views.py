@@ -41,11 +41,25 @@ def get_city_by_id(id=None):
         city = dictfetchall(cursor)
     return city[0]
 
+# pulls just city id and population
 def get_population_by_id(id):
         with connection.cursor() as cursor:
             cursor.execute("SELECT City_ID, SUM(Population) AS Pop FROM C_ZipCodeFix WHERE CITY_ID = "+str(id)+" GROUP BY City_ID")
             id_pop = dictfetchall(cursor)
         return id_pop[0]
+
+def get_state_tax(cityid):
+        with connection.cursor() as cursor:
+            cursor.execute("select us.State, st.Tax_Type, st.AMOUNT from C_UnitedStates as us, C_StateTax st, C_ZipCodeFix as zc where zc.City_ID = "+str(cityid)+" and zc.State_ID = us.State_ID and us.State = st.State group by us.State, st.Tax_Type, st.AMOUNT")
+            id_pop = dictfetchall(cursor)
+            state_list = []
+            tax_type_list = []
+            amount_list = []
+            for item in id_pop:
+                state_list.append(item.State)
+                tax_type_list.append(item.Tax_Type)
+                amount_list.append(item.AMOUNT)
+        return state_list, tax_type_list, amount_list
 
 
 ######################################
@@ -72,6 +86,7 @@ def detail_city(request, id):
     cityid_pop = get_population_by_id(id)
     context['city'] = city
     context['cityid_pop'] = cityid_pop
+    context['tax_state'], context['tax_type'], context['tax_amount'] = get_state_tax(id)
     return render(request, 'cities/city_detail.html', context)
 
 
