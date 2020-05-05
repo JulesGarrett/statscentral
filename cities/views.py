@@ -5,6 +5,7 @@ from cities.models import CityReviews
 from cities.forms import CreateReviewForm, UpdateReviewForm
 from account.models import Account
 from wordcloud import WordCloud, STOPWORDS
+import pandas as pd
 
 
 ######################################
@@ -42,7 +43,7 @@ def get_city_by_id(id=None):
 
 def get_population_by_id(id):
         with connection.cursor() as cursor:
-            cursor.execute("SELECT City_ID, SUM(Population) AS Pop FROM C_Zip WHERE CITY_ID = "+str(id)+" GROUP BY City_ID")
+            cursor.execute("SELECT City_ID, SUM(Population) AS Pop FROM C_ZipCodeFix WHERE CITY_ID = "+str(id)+" GROUP BY City_ID")
             id_pop = dictfetchall(cursor)
         return id_pop[0]
 
