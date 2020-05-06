@@ -48,7 +48,7 @@ def get_population_by_id(id):
             id_pop = dictfetchall(cursor)
         if id_pop:
             return id_pop[0]
-        else return " No Population Data Found"
+        else return {"City_ID":id, "Pop":" No Population Data Found"}
 
 def get_state_tax(cityid):
         state_list = []
