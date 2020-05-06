@@ -60,6 +60,7 @@ def get_state_tax(cityid):
             for item in id_pop:
                 state_list.append(item['state'])
                 tax = item['tax']
+                tax = tax.decode('utf8').encode('ascii', errors='ignore')
                 tax_type_list.append(tax)
                 amount_list.append(item['amount'])
         return state_list, tax_type_list, amount_list
