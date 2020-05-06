@@ -86,7 +86,7 @@ def detail_city(request, id):
     cityid_pop = get_population_by_id(id)
     context['city'] = city
     context['cityid_pop'] = cityid_pop
-    context['tax_state'], context['tax_type'], context['tax_amount'] = get_state_tax(id)
+    # context['tax_state'], context['tax_type'], context['tax_amount'] = get_state_tax(id)
     return render(request, 'cities/city_detail.html', context)
 
 
