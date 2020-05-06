@@ -46,7 +46,9 @@ def get_population_by_id(id):
         with connection.cursor() as cursor:
             cursor.execute("SELECT City_ID, SUM(Population) AS Pop FROM C_ZipCodeFix WHERE CITY_ID = "+str(id)+" GROUP BY City_ID")
             id_pop = dictfetchall(cursor)
-        return id_pop[0]
+        if id_pop:
+            return id_pop[0]
+        else return " No Population Data Found"
 
 def get_state_tax(cityid):
         state_list = []
