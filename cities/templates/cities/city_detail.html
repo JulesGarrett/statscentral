@@ -86,16 +86,16 @@
 				<div class="row">
 					<div class="col">
 						<h5> TAX DATA </h5>
-						<p> <canvas id="myChart" width="400" height="400"></canvas>
+						<p> <canvas id="TaxChart" width="400" height="400"></canvas>
 							<script>
-								var ctx = document.getElementById('myChart').getContext('2d');
+								var ctx = document.getElementById('TaxChart').getContext('2d');
 								var myChart = new Chart(ctx, {
 								    type: 'bar',
 								    data: {
+												labels: ["US Average", "{{city.City}}"],
 								        datasets: [{
 								            label: 'Population',
-														labels: ["US Average", "{{city.City}}"],
-								            data: [1,2],
+								            data: [1, {{cityid_pop.Pop}}],
 								            backgroundColor: [
 								                'rgba(255, 99, 132, 0.2)',
 								                'rgba(54, 162, 235, 0.2)',
