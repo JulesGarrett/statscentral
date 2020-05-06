@@ -88,8 +88,8 @@ def detail_city(request, id):
     context['cityid_pop'] = cityid_pop
     ts_l, tt_l, ta_l = get_state_tax(id)
     context['tax_state'] = ts_l
-     context['tax_type'] = tt_l
-      context['tax_amount'] = ta_l
+    context['tax_type'] = tt_l
+    context['tax_amount'] = ta_l
     return render(request, 'cities/city_detail.html', context)
 
 
