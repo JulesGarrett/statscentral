@@ -57,7 +57,7 @@ def get_state_tax(cityid):
             id_pop = dictfetchall(cursor)
             for item in id_pop:
                 state_list.append(item['state'])
-                tax_type_list.append(item['tax'])
+                tax_type_list.append(item['tax'].strip())
                 amount_list.append(item['amount'])
         return state_list, tax_type_list, amount_list
 
