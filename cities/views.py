@@ -49,12 +49,12 @@ def get_population_by_id(id):
         return id_pop[0]
 
 def get_state_tax(cityid):
+        state_list = []
+        tax_type_list = []
+        amount_list = []
         with connection.cursor() as cursor:
             cursor.execute("select us.State as state, st.Tax_Type as tax, st.AMOUNT as amount from C_UnitedStates as us, C_StateTax st, C_ZipCodeFix as zc where zc.City_ID = "+str(cityid)+" and zc.State_ID = us.State_ID and us.State = st.State group by us.State, st.Tax_Type, st.AMOUNT")
             id_pop = dictfetchall(cursor)
-            state_list = []
-            tax_type_list = []
-            amount_list = []
             for item in id_pop:
                 state_list.append(item.state)
                 tax_type_list.append(item.tax)
