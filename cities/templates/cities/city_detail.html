@@ -55,10 +55,40 @@
 												labels: [{% for item in st_tax %} "{{item.tax}}", {% endfor %}],
 								        datasets: [{
 								            label: 'Tax Amount in Dollars',
-								            data: [{% for item in st_tax %} "${{item.amount}}", {% endfor %}],
+								            data: [{% for item in st_tax %} "{{item.amount}}", {% endfor %}],
 														backgroundColor: ["#17a2b8", "#e85d47", "#008080", "#20c8e3", "#5f9ea0", "#17a2b8", "#e85d47", "#008080", "#20c8e3", "#5f9ea0"],
 								        }]
 								    }
+								});
+							</script>
+						</P>
+					</div>
+					<div class="col">
+						<br>
+						<P> <canvas id="avg_state_tax" width="400" height="400"></canvas>
+							<script>
+								var ctx = document.getElementById('avg_state_tax').getContext('2d');
+								var myChart = new Chart(ctx, {
+										type: 'bar',
+										options: {
+												title: {
+														display: true,
+														text: 'Top 10 Tax Types for {{city.State}}'
+												}
+										},
+										data: {
+												labels: [{% for item in st_tax_avg %} "{{item.tax}}", {% endfor %}],
+												datasets: [{
+														label: '{{city.State}}',
+														data: [{% for item in st_tax_avg %} "{{item.amount}}", {% endfor %}],
+														backgroundColor: "#17a2b8"
+												},
+												{
+														label: 'State Average',
+														data: [{% for item in st_tax_avg %} "{{item.avg_amount}}", {% endfor %}],
+														backgroundColor: "#e85d47"
+												}]
+										}
 								});
 							</script>
 						</P>
