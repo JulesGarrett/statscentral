@@ -55,7 +55,7 @@
 												labels: [{% for item in st_tax %} "{{item.tax}}", {% endfor %}],
 								        datasets: [{
 								            label: 'Tax Amount in Dollars',
-								            data: [{% for item in st_tax %} "{{item.amount}}", {% endfor %}],
+								            data: [{% for item in st_tax %} "${{item.amount}}", {% endfor %}],
 														backgroundColor: ["#17a2b8", "#e85d47", "#008080", "#20c8e3", "#5f9ea0", "#17a2b8", "#e85d47", "#008080", "#20c8e3", "#5f9ea0"],
 								        }]
 								    }
