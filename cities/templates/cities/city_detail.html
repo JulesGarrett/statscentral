@@ -43,15 +43,12 @@
 							<script>
 								var ctx = document.getElementById('myChart').getContext('2d');
 								var myChart = new Chart(ctx, {
-								    type: 'bar',
+								    type: 'pie',
 								    data: {
 												labels: [{% for item in st_tax %} "{{item.tax}}", {% endfor %}],
 								        datasets: [{
 								            label: 'Tax Amount in Dollars',
-								            data: [{% for item in st_tax %} "{{item.amount}}", {% endfor %}],
-								            backgroundColor: 'rgba(255, 99, 132, 0.2)',
-								            borderColor: 'rgba(255, 99, 132, 1)',
-								            borderWidth: 1
+								            data: [{% for item in st_tax %} "{{item.amount}}", {% endfor %}]
 								        }]
 								    },
 								    options: {
