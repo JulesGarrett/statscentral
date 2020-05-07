@@ -50,15 +50,6 @@
 								            label: 'Tax Amount in Dollars',
 								            data: [{% for item in st_tax %} "{{item.amount}}", {% endfor %}]
 								        }]
-								    },
-								    options: {
-								        scales: {
-								            yAxes: [{
-								                ticks: {
-								                    beginAtZero: true
-								                }
-								            }]
-								        }
 								    }
 								});
 							</script>
