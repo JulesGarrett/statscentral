@@ -55,7 +55,7 @@ def get_state_tax(cityid):
         tax_type_list = []
         amount_list = []
         with connection.cursor() as cursor:
-            cursor.execute("select us.State as state, st.Tax_Type as tax, st.AMOUNT as amount from C_UnitedStates as us, C_StateTax st, C_ZipCodeFix as zc where zc.City_ID = "+str(cityid)+" and zc.State_ID = us.State_ID and us.State = st.State and st.Tax_Type <> 'Total Taxes' group by us.State, st.Tax_Type, st.AMOUNT order by amount desc limit 10")
+            cursor.execute("select us.State as state, st.Tax_Type as tax, st.AMOUNT as amount from C_UnitedStates as us, C_StateTax st where us.City_ID = "+str(cityid)+" and st.Tax_Type <> 'Total Taxes' group by us.State, st.Tax_Type, st.AMOUNT order by amount desc limit 10")
             st_tax = dictfetchall(cursor)
         return st_tax
 
