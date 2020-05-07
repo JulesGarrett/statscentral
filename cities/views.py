@@ -55,15 +55,9 @@ def get_state_tax(cityid):
         tax_type_list = []
         amount_list = []
         with connection.cursor() as cursor:
-            cursor.execute("select us.State as state, st.Tax_Type as tax, st.AMOUNT as amount from C_UnitedStates as us, C_StateTax st, C_ZipCodeFix as zc where zc.City_ID = "+str(cityid)+" and zc.State_ID = us.State_ID and us.State = st.State group by us.State, st.Tax_Type, st.AMOUNT")
-            id_pop = dictfetchall(cursor)
-            for item in id_pop:
-                state_list.append(item['state'])
-                tax = item['tax']
-                tax = str(tax).replace("`", '"').replace("&#x27;", '"')
-                tax_type_list.append(tax)
-                amount_list.append(item['amount'])
-        return state_list, tax_type_list, amount_list
+            cursor.execute("select us.State as state, st.Tax_Type as tax, st.AMOUNT as amount from C_UnitedStates as us, C_StateTax st, C_ZipCodeFix as zc where zc.City_ID = "+str(cityid)+" and zc.State_ID = us.State_ID and us.State = st.State and st.Tax_Type <> 'Total Taxes' group by us.State, st.Tax_Type, st.AMOUNT")
+            st_tax = dictfetchall(cursor)
+        return st_tax
 
 
 ######################################
@@ -90,10 +84,7 @@ def detail_city(request, id):
     cityid_pop = get_population_by_id(id)
     context['city'] = city
     context['cityid_pop'] = cityid_pop
-    ts_l, tt_l, ta_l = get_state_tax(id)
-    context['tax_state'] = ts_l
-    context['tax_type'] = tt_l
-    context['tax_amount'] = ta_l
+    context['st_tax'] = get_state_tax(id)
     return render(request, 'cities/city_detail.html', context)
 
 

@@ -45,10 +45,10 @@
 								var myChart = new Chart(ctx, {
 								    type: 'bar',
 								    data: {
-												labels: {{tax_type}},
+												labels: [{% for item in st_tax %} "{{item.tax}}", {% endfor %}],
 								        datasets: [{
 								            label: 'Population',
-								            data: {{tax_amount}},
+								            data: [{% for item in st_tax %} "{{item.amount}}", {% endfor %}],
 								            backgroundColor: [
 								                'rgba(255, 99, 132, 0.2)',
 								                'rgba(54, 162, 235, 0.2)',
