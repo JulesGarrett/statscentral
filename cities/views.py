@@ -58,7 +58,7 @@ def get_top_10_state_tax(cityid):
 
 def get_state_tax(cityid):
         with connection.cursor() as cursor:
-            cursor.execute("select * from (select us.State as state, st.Tax_Type as tax, st.AMOUNT as amount from C_UnitedStates as us, C_StateTax st, C_US_MilitaryCities as mil_c where mil_c.City_ID = "+str(cityid)+" and mil_c.State_ID = us.State_ID and us.State = st.State and st.Tax_Type <> 'Total Taxes' group by us.State, st.Tax_Type, st.AMOUNT order by st.Tax_Type) a left join (select st.Tax_Type as tax, avg(st.AMOUNT) as avg_amount from C_StateTax st where st.State <> 'Total_US' group by st.Tax_Type order by st.Tax_Type) b on a.tax = b.tax")
+            cursor.execute("select * from (select us.State as state, st.Tax_Type as tax, st.AMOUNT as amount from C_UnitedStates as us, C_StateTax st, C_US_MilitaryCities as mil_c where mil_c.City_ID = "+str(cityid)+" and mil_c.State_ID = us.State_ID and us.State = st.State and st.Tax_Type <> 'Total Taxes' group by us.State, st.Tax_Type, st.AMOUNT order by st.Tax_Type) a left join (select st.Tax_Type as tax, avg(st.AMOUNT) as avg_amount from C_StateTax st where st.State <> 'Total_US' group by st.Tax_Type order by st.Tax_Type) b on a.tax = b.tax order by avg_amount")
             st_tax_avg = dictfetchall(cursor)
         return st_tax_avg
 
