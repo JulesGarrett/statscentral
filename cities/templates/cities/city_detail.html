@@ -157,10 +157,11 @@
 				<div class="row">
 					<div class="col">
 		        <h5> REVIEWS </h5>
-		        <p> 	{% for rev in reviews %}
-									 	{{item.Rating}} {{item.Comments}}
-								 	{% endfor %}
-					 </p>
+						{% for rev in reviews %}
+							<p>
+							 	{{item.Rating}} {{item.Comments}}
+							</p>
+					 	{% endfor %}
 					</div>
 				</div>
 
