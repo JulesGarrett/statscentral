@@ -50,9 +50,9 @@ def get_population_by_id(id):
             return id_pop[0]
         else: return {"City_ID":id, "Pop":" No Population Data Found"}
 
-def get_top_5_state_tax(cityid):
+def get_top_7_state_tax(cityid):
         with connection.cursor() as cursor:
-            cursor.execute("select us.State as state, st.Tax_Type as tax, st.AMOUNT/1000000 as amount from C_UnitedStates as us, C_StateTax st, C_US_MilitaryCities as mil_c where mil_c.City_ID = "+str(cityid)+" and mil_c.State_ID = us.State_ID and us.State = st.State and st.Tax_Type <> 'Total Taxes' group by us.State, st.Tax_Type, st.AMOUNT order by amount desc limit 5")
+            cursor.execute("select us.State as state, st.Tax_Type as tax, st.AMOUNT/1000000 as amount from C_UnitedStates as us, C_StateTax st, C_US_MilitaryCities as mil_c where mil_c.City_ID = "+str(cityid)+" and mil_c.State_ID = us.State_ID and us.State = st.State and st.Tax_Type <> 'Total Taxes' group by us.State, st.Tax_Type, st.AMOUNT order by amount desc limit 7")
             st_tax = dictfetchall(cursor)
         return st_tax
 
@@ -88,7 +88,7 @@ def detail_city(request, id):
     cityid_pop = get_population_by_id(id)
     context['city'] = city
     context['cityid_pop'] = cityid_pop
-    context['st_tax'] = get_top_5_state_tax(id)
+    context['st_tax'] = get_top_7_state_tax(id)
     context['st_tax_avg'] = get_state_tax(id)
     return render(request, 'cities/city_detail.html', context)
 
