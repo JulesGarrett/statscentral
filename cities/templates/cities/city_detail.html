@@ -36,9 +36,9 @@
 			 <div class="row">
 					<div class="col">
 		        <h5> TAX DATA </h5>
-							<P> <canvas id="myChart" width="400" height="400"></canvas>
+							<P> <canvas id="tax_pie"></canvas>
 								<script>
-									var ctx = document.getElementById('myChart').getContext('2d');
+									var ctx = document.getElementById('tax_pie').getContext('2d');
 									var myChart = new Chart(ctx, {
 									    type: 'pie',
 											options: {
@@ -61,7 +61,7 @@
 						</div>
 					<div class="col">
 						<br>
-						<P> <canvas id="avg_state_tax" width="400" height="400"></canvas>
+						<P> <canvas id="avg_state_tax"></canvas>
 							<script>
 								var ctx = document.getElementById('avg_state_tax').getContext('2d');
 								var myChart = new Chart(ctx, {
@@ -100,9 +100,9 @@
 				<div class="row">
 					<div class="col">
 						<h5> MILITARY DATA </h5>
-						<p> <canvas id="TaxChart" width="400" height="400"></canvas>
+						<p> <canvas id="MilChart" width="400" height="400"></canvas>
 							<script>
-								var ctx = document.getElementById('TaxChart').getContext('2d');
+								var ctx = document.getElementById('MilChart').getContext('2d');
 								var myChart = new Chart(ctx, {
 								    type: 'bar',
 								    data: {
