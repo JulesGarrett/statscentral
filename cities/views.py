@@ -64,19 +64,19 @@ def get_state_tax(cityid):
 
 def get_reviews_by_city(cityid):
     with connection.cursor() as cursor:
-        cursor.execute("select mcs.City, mcs.State, cr.Rating, cr.Comments from (Select mc.City, us.State from (select State_ID, City from C_US_MilitaryCities where City_ID = "+cityid+") mc left join C_UnitedStates us on us.State_ID = mc.State_ID) mcs left join cities_cityreviews cr on mcs.City = cr.City and mcs.State = cr.State")
+        cursor.execute("select mcs.City, mcs.State, cr.Rating, cr.Comments from (Select mc.City, us.State from (select State_ID, City from C_US_MilitaryCities where City_ID = "+str(cityid)+") mc left join C_UnitedStates us on us.State_ID = mc.State_ID) mcs left join cities_cityreviews cr on mcs.City = cr.City and mcs.State = cr.State")
         reviews = dictfetchall(cursor)
     return reviews
 
 def get_cityavg_ratings_by_city(cityid):
     with connection.cursor() as cursor:
-        cursor.execute("select mcs.City, mcs.State, avg(cr.Rating) as avg_rating from (Select mc.City, us.State from (select State_ID, City from C_US_MilitaryCities where City_ID = 13944) mc left join C_UnitedStates us on us.State_ID = mc.State_ID) mcs left join cities_cityreviews cr on mcs.City = cr.City and mcs.State = cr.State")
+        cursor.execute("select mcs.City, mcs.State, avg(cr.Rating) as avg_rating from (Select mc.City, us.State from (select State_ID, City from C_US_MilitaryCities where City_ID = "+str(cityid)+") mc left join C_UnitedStates us on us.State_ID = mc.State_ID) mcs left join cities_cityreviews cr on mcs.City = cr.City and mcs.State = cr.State")
         reviews = dictfetchall(cursor)
     return reviews
 
 def get_stateavg_ratings_by_city(cityid):
     with connection.cursor() as cursor:
-        cursor.execute("select mcs.State, avg(cr.Rating) as avg_rating from (Select us.State from (select State_ID from C_US_MilitaryCities where City_ID = 13944) mc left join C_UnitedStates us on us.State_ID = mc.State_ID) mcs left join cities_cityreviews cr on mcs.State = cr.State group by mcs.State")
+        cursor.execute("select mcs.State, avg(cr.Rating) as avg_rating from (Select us.State from (select State_ID from C_US_MilitaryCities where City_ID = "+str(cityid)+") mc left join C_UnitedStates us on us.State_ID = mc.State_ID) mcs left join cities_cityreviews cr on mcs.State = cr.State group by mcs.State")
         reviews = dictfetchall(cursor)
     return reviews
 
