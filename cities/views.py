@@ -63,7 +63,7 @@ def get_state_tax(cityid):
         return st_tax_avg
 
 def get_reviews_by_city(cityid):
-    with connection.cursor as cursor:
+    with connection.cursor() as cursor:
         cursor.execute("select mcs.City, mcs.State, cr.Rating, cr.Comments from (Select mc.City, us.State from (select State_ID, City from C_US_MilitaryCities where City_ID = "+cityid+") mc left join C_UnitedStates us on us.State_ID = mc.State_ID) mcs left join cities_cityreviews cr on mcs.City = cr.City and mcs.State = cr.State")
         reviews = dictfetchall(cursor)
     return reviews
