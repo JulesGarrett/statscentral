@@ -109,47 +109,6 @@
 
 				<!-- MILITARY DATA SECTION -->
 						<h5> MILITARY DATA </h5>
-						<p> <canvas id="MilChart" width="400" height="400"></canvas>
-							<script>
-								var ctx = document.getElementById('MilChart').getContext('2d');
-								var myChart = new Chart(ctx, {
-								    type: 'bar',
-								    data: {
-												labels: ["US Average", "{{city.City}}"],
-								        datasets: [{
-								            label: 'Population',
-								            data: [50000, {{cityid_pop.Pop}}],
-								            backgroundColor: [
-								                'rgba(255, 99, 132, 0.2)',
-								                'rgba(54, 162, 235, 0.2)',
-								                'rgba(255, 206, 86, 0.2)',
-								                'rgba(75, 192, 192, 0.2)',
-								                'rgba(153, 102, 255, 0.2)',
-								                'rgba(255, 159, 64, 0.2)'
-								            ],
-								            borderColor: [
-								                'rgba(255, 99, 132, 1)',
-								                'rgba(54, 162, 235, 1)',
-								                'rgba(255, 206, 86, 1)',
-								                'rgba(75, 192, 192, 1)',
-								                'rgba(153, 102, 255, 1)',
-								                'rgba(255, 159, 64, 1)'
-								            ],
-								            borderWidth: 1
-								        }]
-								    },
-								    options: {
-								        scales: {
-								            yAxes: [{
-								                ticks: {
-								                    beginAtZero: true
-								                }
-								            }]
-								        }
-								    }
-								});
-							</script>
-						</p>
 					</div>
 				</div>
 
@@ -159,7 +118,7 @@
 		        <h5> REVIEWS </h5>
 						{% for rev in reviews %}
 							<p>
-							 	{{item.Rating}} {{item.Comments}}
+							 	{{rev.Rating}} {{rev.Comments}}
 							</p>
 					 	{% endfor %}
 					</div>
