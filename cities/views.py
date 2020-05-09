@@ -62,6 +62,15 @@ def get_state_tax(cityid):
             st_tax_avg = dictfetchall(cursor)
         return st_tax_avg
 
+def get_reviews_by_city(cityid):
+    with connection.cursor as cursor:
+        cursor.execute('''select mcs.City, mcs.State, cr.Rating, cr.Comments
+                            from (Select mc.City, us.State from (select State_ID, City from C_US_MilitaryCities where City_ID = '''+cityid+''') mc
+                            left join C_UnitedStates us on us.State_ID = mc.State_ID) mcs
+                            left join cities_cityreviews cr on mcs.City = cr.City and mcs.State = cr.State''')
+        reviews = dictfetchall(cursor)
+    return reviews
+
 
 
 ######################################
@@ -90,6 +99,7 @@ def detail_city(request, id):
     context['cityid_pop'] = cityid_pop
     context['st_tax'] = get_top_7_state_tax(id)
     context['st_tax_avg'] = get_state_tax(id)
+    context['reviews'] = get_reviews_by_city(id)
     return render(request, 'cities/city_detail.html', context)
 
 

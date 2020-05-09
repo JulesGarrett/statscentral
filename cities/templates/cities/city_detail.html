@@ -16,10 +16,13 @@
 <div class="container">
 	<div class="row">
 
-		<!-- Blog Post -->
+
 		<div class="card m-auto" style="width: 100%">
 			<div class="card-body">
         <h2 class="card-title" style="color: #17a2b8">{{city.City}}, {{city.State}}</h2>
+
+
+				<!-- OVERVIEW SECTION -->
 				<div class="row">
 					<div class="col">
 		        <h5> OVERVIEW </h5>
@@ -33,6 +36,7 @@
 				</div>
 
 
+				<!-- TAX DATA SECTION -->
 			 <div class="row">
 					<div class="col-md-auto">
 		        <h5> TAX DATA </h5>
@@ -44,7 +48,7 @@
 											options: {
 													title: {
 															display: true,
-															text: 'Top 7 Tax Types for {{city.State}}'
+															text: 'Top 7 Tax Types for {{city.State}} (in Millions of Dollars)'
 													}
 											},
 									    data: {
@@ -91,6 +95,8 @@
 					</div>
 				</div>
 
+
+				<!-- SCHOOL DATA SECTION -->
 				<div class="row">
 					<div class="col">
 		        <h5> SCHOOL DATA </h5>
@@ -99,6 +105,9 @@
 				</div>
 				<div class="row">
 					<div class="col">
+
+
+				<!-- MILITARY DATA SECTION -->
 						<h5> MILITARY DATA </h5>
 						<p> <canvas id="MilChart" width="400" height="400"></canvas>
 							<script>
@@ -143,10 +152,15 @@
 						</p>
 					</div>
 				</div>
+
+				<!-- REVIEWS SECTION -->
 				<div class="row">
 					<div class="col">
 		        <h5> REVIEWS </h5>
-		        <p> will put list of reviews here </p>
+		        <p> 	{% for rev in reviews %}
+									 	{{item.Rating}} {{item.Comments}}
+								 	{% endfor %}
+					 </p>
 					</div>
 				</div>
 
