@@ -153,10 +153,22 @@ def get_bully_data_by_state(cityid):
         with connection.cursor() as cursor:
             cursor.execute('''SELECT bhr.State, bhr.NumOfSchools as schools, bhr.NumAllegations/bhr.NumOfSchools as al_per_school,
                                  CASE When bhr.State = (select State from C_UnitedStates us
-                                                          right join (select State_ID from C_US_MilitaryCities where City_ID = 13944) st
+                                                          right join (select State_ID from C_US_MilitaryCities where City_ID = '''+str(cityid)+''') st
                                                           on st.State_ID = us.State_ID)
                                   THEN "#e85d47" ELSE "#17a2b8" END AS color From S_Bullying_HarrassmentReports bhr
                                   order by State asc''')
+            values = dictfetchall(cursor)
+        return values
+
+def get_teach_data_by_state(cityid):
+        with connection.cursor() as cursor:
+            cursor.execute('''SELECT tce.State, tce.FullTimeTeachers/tce.NumOfSchools as teach_per_school, tce.Cert_Lic_Percent,
+                                     CASE When tce.State = (select State from C_UnitedStates us
+                                                             right join (select State_ID from C_US_MilitaryCities where City_ID = '''+str(cityid)+''') st
+                                                             on st.State_ID = us.State_ID)
+                                     THEN "#e85d47" ELSE "#17a2b8" END AS color
+                                     From S_SCH_TeacherCertAndExperience tce
+                                     order by State asc''')
             values = dictfetchall(cursor)
         return values
 
@@ -195,6 +207,7 @@ def detail_city(request, id):
     context['grant_per_pop'] = get_military_grant_per_population(id)
     context['school_bully'] = get_bully_data(id)
     context['school_bully_st'] = get_bully_data_by_state(id)
+    context['school_teacher'] = get_teach_data_by_state(id)
     return render(request, 'cities/city_detail.html', context)
 
 

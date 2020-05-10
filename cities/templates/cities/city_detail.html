@@ -322,6 +322,57 @@
 						</P>
 					</div>
 				</div>
+				<div class="row">
+					<div class="col-12">
+						<P> <canvas id="st_teach" width="1000" height="400"></canvas>
+							<script>
+								var ctx = document.getElementById('st_teach').getContext('2d');
+								var myChart = new Chart(ctx, {
+										type: 'bar',
+										options: {
+												title: {
+														display: true,
+														text: 'Average Number of Teachers per School and Certification Percent'
+												}
+										},
+										data: {
+												labels: [{% for item in school_teacher %} "{{item.State}}", {% endfor %}],
+												datasets: [{
+														label: 'Number of Schools',
+														data: [{% for item in school_teacher %} "{{item.teach_per_school}}", {% endfor %}],
+														yAxisID: 'A',
+														backgroundColor: [{% for item in school_teacher %} "{{item.color}}", {% endfor %}],
+														order:1
+												},
+												{
+														label: 'Average Allegations Per School',
+														data: [{% for item in school_bully_st %} "{{item.Cert_Lic_Percent}}", {% endfor %}],
+														backgroundColor: "#20c8e3",
+														borderColor:"#20c8e3",
+														type: "line",
+														yAxisID: 'B',
+														fill:false,
+														order:2
+												}]
+										},
+										options: {
+									    scales: {
+									      yAxes: [{
+									        id: 'A',
+									        type: 'linear',
+									        position: 'left'
+									      }, {
+									        id: 'B',
+									        type: 'linear',
+									        position: 'right'
+									      }]
+									    }
+									  }
+								});
+							</script>
+						</P>
+					</div>
+				</div>
 
 
 				<!-- REVIEWS SECTION -->
