@@ -80,6 +80,21 @@ def get_stateavg_ratings_by_city(cityid):
         rating = dictfetchall(cursor)
     return rating[0]
 
+def get_militarybases(cityid):
+        with connection.cursor() as cursor:
+            cursor.execute('''select cs.State, mb.SiteName, mb.Component, mb.Status from M_MilitaryBases mb
+                                right join (select us.State from C_US_MilitaryCities mc
+                                	           left join C_UnitedStates us on us.State_ID = mc.State_ID
+                                	           where mc.City_ID = '''+str(cityid)+''') cs on cs.State = mb.State order by Status ASC''')
+            bases = dictfetchall(cursor)
+        return bases
+
+def get_militarycare(cityid):
+        with connection.cursor() as cursor:
+            cursor.execute("select mcs.State, avg(cr.Rating) as avg_rating from (Select us.State from (select State_ID from C_US_MilitaryCities where City_ID = "+str(cityid)+") mc left join C_UnitedStates us on us.State_ID = mc.State_ID) mcs left join cities_cityreviews cr on mcs.State = cr.State group by mcs.State")
+            care_centers = dictfetchall(cursor)
+        return care_centers
+
 
 ######################################
 #          View Functions            #
@@ -110,6 +125,7 @@ def detail_city(request, id):
     context['reviews'] = get_reviews_by_city(id)
     context['city_rating'] = get_cityavg_ratings_by_city(id)
     context['state_rating'] = get_stateavg_ratings_by_city(id)
+    context['militarybases'] = get_militarybases(id)
     return render(request, 'cities/city_detail.html', context)
 
 

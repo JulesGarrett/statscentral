@@ -74,7 +74,7 @@
 										options: {
 												title: {
 														display: true,
-														text: 'Tax Amounts by Category {{city.State}} vs Average'
+														text: 'Tax Amount by Category {{city.State}} vs Average'
 												}
 										},
 										data: {
@@ -99,9 +99,25 @@
 
 				<!-- SCHOOL DATA SECTION -->
 				<div class="row">
-					<div class="col">
+					<div class="col-md-auto">
 		        <h5> SCHOOL DATA </h5>
-		        <p> will put school data and graph here </p>
+		        <table class="table table-hover">
+							<thead>
+								<tr>
+									<th scope="col">Site Name</th>
+									<th scope="col">Component</th>
+									<th scope="col">Status</th>
+								</tr>
+								{% for row in militarybases %}
+								<tr>
+									<td>{{row.SiteName}}</td>
+									<td>{{row.Component}}</td>
+									<td>{{row.Status}}</td>
+								</tr>
+								{% endfor %}
+							</thead>
+
+		        </table>
 					</div>
 				</div>
 
