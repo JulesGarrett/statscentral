@@ -99,26 +99,28 @@
 
 				<!-- SCHOOL DATA SECTION -->
 				<div class="row">
+	        <h5> MILITARY DATA </h5>
 					<div class="col-md-auto">
-		        <h5> MILITARY DATA </h5>
-		        <table class="table">
-							<h7> Military Bases in {{state_rating.State}}
-							<thead>
-								<tr class="table-info">
-									<th scope="col">Site Name</th>
-									<th scope="col">Component</th>
-									<th scope="col">Status</th>
-								</tr>
-								{% for row in militarybases %}
-								<tr>
-									<td>{{row.SiteName}}</td>
-									<td>{{row.Component}}</td>
-									<td>{{row.Status}}</td>
-								</tr>
-								{% endfor %}
-							</thead>
+						<div class="table-wrapper-scroll-y">
+			        <table class="table">
+								<h7> Military Bases in {{state_rating.State}}
+								<thead>
+									<tr class="table-info">
+										<th scope="col">Site Name</th>
+										<th scope="col">Component</th>
+										<th scope="col">Status</th>
+									</tr>
+									{% for row in militarybases %}
+									<tr>
+										<td>{{row.SiteName}}</td>
+										<td>{{row.Component}}</td>
+										<td>{{row.Status}}</td>
+									</tr>
+									{% endfor %}
+								</thead>
 
-		        </table>
+			        </table>
+						</div>
 					</div>
 				</div>
 
