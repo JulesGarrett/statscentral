@@ -48,22 +48,21 @@
 		<div class="card-body">
 			<h2 class = "text-center" style="color: #17a2b8"> Find a City that Matches your Criteria </h2>
       <form class="create-form" method="post" enctype="multipart/form-data"> {% csrf_token %}
-
+				<h5 class = "text-left" style="color: #17a2b8"> General </h5>
         <div class ="row">
-          <div class="col">
-						<h5> General </h5>
+          <div class="col-6">
             <div class="form-group">
               <label>Enter Minimum Population</label>
               <input class="form-control" type="number" value = 0 name="min_pop" min = 0 placeholder="Minimum" autofocus>
             </div>
           </div>
-          <div class="col">
+          <div class="col-6">
             <div class="form-group">
               <label>Enter Maximum Population</label>
               <input class="form-control" type="number" value=10000000 name="max_pop" max =10000000 placeholder="Maximum" autofocus>
             </div>
           </div>
-					<div class="row">
+					<div class="row"><div class="col-12">
 						<div class="form-group">
 							<label>How important is pay little in income and sales tax to you?</label><br>
 								<select id="m_base_type" name="m_base">
@@ -73,11 +72,11 @@
 									<option value = "Neither"> Don't Care </option>
 								</select>
 						</div>
-	        </div>
+	        </div></div>
 
         <div class="row">
-          <div class="col">
-						<h5> Military</h5>
+					<h5 class = "text-left" style="color: #17a2b8"> Military</h5>
+          <div class="col-8">
             <div class="form-group">
               <label>Is being able to access military aid important?</label><br>
                 <label class="radio-inline">
@@ -88,7 +87,7 @@
           </div>
         </div>
 				<div class="row">
-					<div class="col">
+					<div class="col-8">
 						<div class="form-group">
 							<label>Do you want to be close to a Military Base?</label><br>
 							<select id="m_base_type" name="m_base">
@@ -108,8 +107,8 @@
 					</div>
 				</div>
 				<div class="row">
-					<h5> School </h5>
-					<div class="col">
+					<h5 class = "text-left" style="color: #17a2b8"> School </h5>
+					<div class="col-8">
 						<div class="form-group">
               <label>Is having good schools important for you?</label><br>
                 <label class="radio-inline">
@@ -119,7 +118,7 @@
             </div>
 					</div>
 				</div>
-        <div class="col-xs-4 text-center">
+        <div class="col-md-4 text-center">
           <button class="btn btn-info" type="submit" style="width:33% ">Search</button>
         </div>
       </form>
