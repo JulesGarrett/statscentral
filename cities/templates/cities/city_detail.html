@@ -410,7 +410,9 @@
 								{% if reviews %}
 									<ul class="list-group">
 									{% for rev in reviews %}
+									<li class="list-group-item">
 										Rating: {{rev.Rating}} <br> Comments: {{rev.Comments}}
+									</li>
 									{% endfor %}
 									</ul>
 									{% else %}
