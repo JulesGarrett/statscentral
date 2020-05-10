@@ -199,12 +199,27 @@ def search_cities(request):
         context['cities'] = search_city_match(query)
     return render(request, 'cities/search.html', context)
 
+def city_match_query(max_pop, min_pop, tax, mil, base):
+    base_query = '''Select mc.City, z.City_Id, z.total_pop from
+                    (Select City_ID, Sum(Population) as total_pop from C_ZipCodeFix
+                    group by City_ID
+                    having total_pop >= '''+str(min_pop)+''' and total_pop <= '''+str(max_pop)+''') z
+                    left join C_US_MilitaryCities mc on mc.City_ID = z.City_ID'''
+    with connection.cursor() as cursor:
+        cursor.execute(base_query)
+        cities = dictfetchall(cursor)
+    return cities
+
 
 def city_match(request):
     context = {}
     if request.GET:
-        query = request.GET['military']
-        context['query'] = str(query)
+        max_pop = request.GET['max_pop']
+        min_pop = request.GET['min_pop']
+        tax = request.GET['tax']
+        mil = request.GET['military']
+        base = request.GET['base']
+        context['cities'] = city_match_query(max, min, tax, mil, base)
         # context['cities'] = search_city_match(query)
     return render(request, "cities/city_match.html", context)
 
