@@ -182,7 +182,42 @@ def get_sales_tax_by_state(cityid):
             values = dictfetchall(cursor)
         return values
 
-def city_match_query(max_pop, min_pop, tax, mil, base):
+def city_match_query(max_pop, min_pop, mil, base):
+    # just pop
+    if mil =="No" and base == "No":
+        with connection.cursor() as cursor:
+            cursor.execute('''Select mc.City, z.City_Id as CityID, z.total_pop from
+                            (Select City_ID, Sum(Population) as total_pop from C_ZipCodeFix
+                            group by City_ID
+                            having total_pop >= '''+str(min_pop)+''' and total_pop <= '''+str(max_pop)+''') z
+                            left join C_US_MilitaryCities mc on mc.City_ID = z.City_ID limit 25''')
+            cities = dictfetchall(cursor)
+        return cities
+    # pop plus bool mil aid
+    else if mil !="No" and base == "No":
+        with connection.cursor() as cursor:
+            cursor.execute('''Select mc.City, z.City_Id as CityID, z.total_pop from
+                            (Select City_ID, Sum(Population) as total_pop from C_ZipCodeFix
+                            group by City_ID
+                            having total_pop >= '''+str(min_pop)+''' and total_pop <= '''+str(max_pop)+''') z
+                            left join C_US_MilitaryCities mc on mc.City_ID = z.City_ID limit 25''')
+            cities = dictfetchall(cursor)
+        return cities
+    # pop plus base type
+    else if mil =="No" and base != "No":
+        with connection.cursor() as cursor:
+            cursor.execute('''select * from (
+                                Select us.State, mc.City, z.City_Id as CityID, z.total_pop
+                                    from (Select City_ID, Sum(Population) as total_pop from C_ZipCodeFix
+                                                group by City_ID
+                                                having total_pop >= '''+str(min_pop)+''' and total_pop <= '''+str(max_pop)+''') z
+                                                left join C_US_MilitaryCities mc on mc.City_ID = z.City_ID
+                                                left join C_UnitedStates us on us.State_ID = mc.State_ID) base
+                                    where State in (SELECT State from M_MilitaryBases where Component = "'''+str(base)+'''")''')
+            cities = dictfetchall(cursor)
+        return cities
+    # everything
+    else:
         with connection.cursor() as cursor:
             cursor.execute('''Select mc.City, z.City_Id as CityID, z.total_pop from
                             (Select City_ID, Sum(Population) as total_pop from C_ZipCodeFix
@@ -215,14 +250,12 @@ def city_match(request):
     if request.GET:
         max_pop = request.GET['max_pop']
         min_pop = request.GET['min_pop']
-        tax = request.GET['tax']
         mil = request.GET['military']
         base = request.GET['m_base']
         context['min_pop'] = int(min_pop)
         context['max_pop'] = int(max_pop)
         context['m_base'] = str(base)
         context['military'] = str(mil)
-        context['tax'] = str(tax)
         context['cities'] = city_match_query(max_pop, min_pop, tax, mil, base)
     return render(request, "cities/city_match.html", context)
 
