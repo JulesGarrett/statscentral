@@ -117,6 +117,8 @@
 										<th scope="col">Component</th>
 										<th scope="col">Status</th>
 									</tr>
+								</thead>
+								<tbody>
 									{% for row in militarybases %}
 									<tr>
 										<td>{{row.SiteName}}</td>
@@ -124,7 +126,8 @@
 										<td>{{row.Status}}</td>
 									</tr>
 									{% endfor %}
-								</thead>
+								</tbody>
+
 
 			        </table>
 						</div>
