@@ -172,11 +172,10 @@
 										options: {
 												title: {
 														display: true,
-														text: 'Tax Amount by Category {{city.State}} vs Average'
+														text: 'VA Home Grant Value {{city.State}} vs Average'
 												}
 										},
 										data: {
-												labels: ["{{city.State}}", "Average"],
 												datasets: [{
 														label: '{{city.State}}',
 														data: [{% for item in military_grantavgs %} "{{item.GrantValue}}", {% endfor %}],
