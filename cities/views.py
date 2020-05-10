@@ -217,7 +217,7 @@ def city_match(request):
         min_pop = request.GET['min_pop']
         tax = request.GET['tax']
         mil = request.GET['military']
-        base = request.GET['base']
+        base = request.GET['m_base']
         context['min_pop'] = int(min_pop)
         context['max_pop'] = int(max_pop)
         context['m_base'] = str(base)
