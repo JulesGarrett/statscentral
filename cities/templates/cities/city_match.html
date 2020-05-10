@@ -80,9 +80,9 @@
             <div class="form-group">
               <label>Is being able to access military aid important?</label><br>
                 <label class="radio-inline">
-                <input type="radio" name="miliatry" value = "Yes"> Yes </label>
+                <input type="radio" name="miliatry" id="military" value = "Yes"> Yes </label>
                 <label class="radio-inline">
-                <input type="radio" name="miliatry" checked value = "No"> No </label>
+                <input type="radio" name="miliatry" id="military" checked value = "No"> No </label>
             </div>
           </div>
         </div>
@@ -108,7 +108,6 @@
 				</div>
         <div class="col-xs-4 text-center">
           <button class="btn btn-info" type="submit" style="width:33% ">Search</button>
-					<p> {{min_pop}}, {{max_pop}} </p>
         </div>
       </form>
 		</div>
@@ -124,6 +123,9 @@
 <script type="text/javascript">
 	document.getElementById("min_pop").value = "{{min_pop}}"
 	document.getElementById("max_pop").value = "{{max_pop}}"
+	document.getElementById("tax").value = "{{max_pop}}"
+	document.getElementById("m_base").value = "{{max_pop}}"
+	document.getElementById("miliatry").value = "{{max_pop}}"
 </script>
 
 
