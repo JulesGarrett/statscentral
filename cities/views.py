@@ -215,13 +215,12 @@ def city_match(request):
     if request.GET:
         max_pop = request.GET['max_pop']
         min_pop = request.GET['min_pop']
-        tax = request.GET['tax']
-        mil = request.GET['military']
-        base = request.GET['base']
+        # tax = request.GET['tax']
+        # mil = request.GET['military']
+        # base = request.GET['base']
         context['min_pop'] = int(min_pop)
         context['max_pop'] = int(max_pop)
         context['cities'] = city_match_query(max, min, tax, mil, base)
-        # context['cities'] = search_city_match(query)
     return render(request, "cities/city_match.html", context)
 
 
