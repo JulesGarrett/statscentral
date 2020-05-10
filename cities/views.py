@@ -130,6 +130,24 @@ def get_military_grant_per_population(cityid):
             ratios = dictfetchall(cursor)
         return ratios
 
+def get_bully_avg():
+        with connection.cursor() as cursor:
+            cursor.execute('''select avg(BiasOfSexAllegations) as sex_al,
+                                avg(Sex_race_Origin_Allegations) as sex_race_al, avg(BiasOfDisabilityAllegations) as dis_al
+                                from S_Bullying_HarrassmentReports''')
+            avgs = dictfetchall(cursor)
+        return avgs
+
+def get_bully_data(cityid):
+        with connection.cursor() as cursor:
+            cursor.execute('''select st.State, BiasOfSexAllegations as sex_al, Sex_race_Origin_Allegations as sex_race_al, BiasOfDisabilityAllegations as dis_al
+                                 from S_Bullying_HarrassmentReports bhs
+                                 right join (select State from C_UnitedStates
+                                             where State_ID = (select State_ID from C_US_MilitaryCities where City_ID = '''+str(cityid)+''')) st
+                                 on st.State = bhs.State''')
+            state_vals = dictfetchall(cursor)
+            avgs = get_bully_avg()
+        return {"avgs":avgs[0], "state_vals":state_vals[0]}
 
 
 ######################################
@@ -165,6 +183,7 @@ def detail_city(request, id):
     context['militarycare'] = get_militarycare(id)
     context['military_grantavgs'] = get_militarygrantsavg(id)
     context['grant_per_pop'] = get_military_grant_per_population(id)
+    context['school_bully'] = get_bully_avg(id)
     return render(request, 'cities/city_detail.html', context)
 
 
