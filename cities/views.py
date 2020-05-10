@@ -184,7 +184,7 @@ def get_sales_tax_by_state(cityid):
 
 def city_match_query(max_pop, min_pop, tax, mil, base):
         with connection.cursor() as cursor:
-            cursor.execute('''Select mc.City, z.City_Id, z.total_pop from
+            cursor.execute('''Select mc.City, z.City_Id as CityID, z.total_pop from
                             (Select City_ID, Sum(Population) as total_pop from C_ZipCodeFix
                             group by City_ID
                             having total_pop >= '''+str(min_pop)+''' and total_pop <= '''+str(max_pop)+''') z
