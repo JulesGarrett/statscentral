@@ -91,7 +91,9 @@ def get_militarybases(cityid):
 
 def get_militarycare(cityid):
         with connection.cursor() as cursor:
-            cursor.execute("select mcs.State, avg(cr.Rating) as avg_rating from (Select us.State from (select State_ID from C_US_MilitaryCities where City_ID = "+str(cityid)+") mc left join C_UnitedStates us on us.State_ID = mc.State_ID) mcs left join cities_cityreviews cr on mcs.State = cr.State group by mcs.State")
+            cursor.execute('''Select cf.FacilityName, cf.PRIM_SVC, cf.S_CITY, cf.S_STATE, cf.S_ADD1, cf.S_ADD2, cf.Type from M_Polytrauma_Care_Facility cf
+                                right join (select City, State from C_US_MilitaryCities mc
+                                where mc.City_ID = '''+str(cityid)+''') cs on cs.State = cf.S_STATE''')
             care_centers = dictfetchall(cursor)
         return care_centers
 
@@ -126,6 +128,7 @@ def detail_city(request, id):
     context['city_rating'] = get_cityavg_ratings_by_city(id)
     context['state_rating'] = get_stateavg_ratings_by_city(id)
     context['militarybases'] = get_militarybases(id)
+    context['militarycare'] = get_militarycare(id)
     return render(request, 'cities/city_detail.html', context)
 
 

@@ -134,6 +134,32 @@
 			        </table>
 						</div>
 					</div>
+					<div class="col-md-auto">
+						<br>
+						<div class="table-wrapper-scroll-y my-custom-scrollbar">
+							<table class="table table-sm">
+								<h7> Military Care Facilities in {{state_rating.State}}
+								<thead>
+									<tr class="table-info">
+										<th class="col-s-3">Facility Name</th>
+										<th class="col-s-3">Primary Service</th>
+										<th class="col-s-3">Type</th>
+									</tr>
+								</thead>
+								<tbody>
+									{% for row in militarycare %}
+									<tr>
+										<td>{{row.FacilityName}}</td>
+										<td>{{row.PRIM_SVC}}</td>
+										<td>{{row.Type}}</td>
+									</tr>
+									{% endfor %}
+								</tbody>
+
+
+							</table>
+						</div>
+					</div>
 				</div>
 
 
