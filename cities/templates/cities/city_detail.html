@@ -289,6 +289,7 @@
 												datasets: [{
 														label: 'Number of Schools',
 														data: [{% for item in school_bully_st %} "{{item.schools}}", {% endfor %}],
+														yAxisID: 'A',
 														backgroundColor: [{% for item in school_bully_st %} "{{item.color}}", {% endfor %}],
 														order:1
 												},
@@ -297,9 +298,27 @@
 														data: [{% for item in school_bully_st %} "{{item.al_per_school}}", {% endfor %}],
 														backgroundColor: "#20c8e3",
 														type: "line",
+														yAxisID: 'B',
 														order:2
 												}]
-										}
+										},
+										options: {
+									    scales: {
+									      yAxes: [{
+									        id: 'A',
+									        type: 'linear',
+									        position: 'left',
+									      }, {
+									        id: 'B',
+									        type: 'linear',
+									        position: 'right',
+									        ticks: {
+									          max: 1,
+									          min: 0
+									        }
+									      }]
+									    }
+									  }
 								});
 							</script>
 						</P>
