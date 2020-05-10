@@ -200,6 +200,15 @@ def search_cities(request):
     return render(request, 'cities/search.html', context)
 
 
+def city_match(request):
+    context = {}
+    if request.GET:
+        query = request.GET['military']
+        context['query'] = str(query)
+        # context['cities'] = search_city_match(query)
+    return render(request, "cities/city_match.html", context)
+
+
 def detail_city(request, id):
     context = {}
     city = get_city_by_id(id)
@@ -278,7 +287,3 @@ def edit_review(request, slug):
     context['form'] = form
     context['city'] = review.City
     return render(request, 'cities/edit_review.html', context)
-
-def city_match(request):
-    context = {}
-    return render(request, "cities/city_match.html", context)
