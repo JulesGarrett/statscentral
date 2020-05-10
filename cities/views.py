@@ -149,6 +149,16 @@ def get_bully_data(cityid):
             avgs = get_bully_avg()
         return {"avgs":avgs[0], "state_vals":state_vals[0]}
 
+def get_bully_data_by_state(cityid):
+        with connection.cursor() as cursor:
+            cursor.execute('''SELECT bhr.State, bhr.NumOfSchools as schools, bhr.NumAllegations/bhr.NumOfSchools as al_per_school,
+                                 CASE When bhr.State = (select State from C_UnitedStates us
+                                                          right join (select State_ID from C_US_MilitaryCities where City_ID = 13944) st
+                                                          on st.State_ID = us.State_ID)
+                                  THEN "#e85d47" ELSE "#17a2b8" END AS color From S_Bullying_HarrassmentReports bhr
+                                  order by schools desc''')
+            values = dictfetchall(cursor)
+        return values
 
 ######################################
 #          View Functions            #
@@ -184,6 +194,7 @@ def detail_city(request, id):
     context['military_grantavgs'] = get_militarygrantsavg(id)
     context['grant_per_pop'] = get_military_grant_per_population(id)
     context['school_bully'] = get_bully_data(id)
+    context['school_bully_st'] = get_bully_data_by_state(id)
     return render(request, 'cities/city_detail.html', context)
 
 
