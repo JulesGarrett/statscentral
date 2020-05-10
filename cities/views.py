@@ -220,6 +220,9 @@ def city_match(request):
         base = request.GET['base']
         context['min_pop'] = int(min_pop)
         context['max_pop'] = int(max_pop)
+        context['m_base'] = str(base)
+        context['military'] = str(mil)
+        context['tax'] = str(tax)
         context['cities'] = city_match_query(max, min, tax, mil, base)
     return render(request, "cities/city_match.html", context)
 
