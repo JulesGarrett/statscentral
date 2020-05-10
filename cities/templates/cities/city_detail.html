@@ -27,7 +27,7 @@
 					<div class="col">
 		        <h5> OVERVIEW </h5>
 		        <P> Population: {{cityid_pop.Pop}} <br>
-								Average Rating for {{city.City}}: {{city_rating.avg_rating}} <br>
+								Average Rating for {{city_rating.City}}: {{city_rating.avg_rating}} <br>
 								Average Rating for Cities in {{state_rating.State}}: {{city_rating.avg_rating}}
 						</P>
 					</div>
@@ -74,7 +74,7 @@
 										options: {
 												title: {
 														display: true,
-														text: 'Top 10 Tax Types for {{city.State}}'
+														text: 'Tax Amounts by Category {{city.State}} vs Average'
 												}
 										},
 										data: {
@@ -85,7 +85,7 @@
 														backgroundColor: "#17a2b8"
 												},
 												{
-														label: 'State Average',
+														label: 'Average',
 														data: [{% for item in st_tax_avg %} "{{item.avg_amount}}", {% endfor %}],
 														backgroundColor: "#e85d47"
 												}]
@@ -104,14 +104,15 @@
 		        <p> will put school data and graph here </p>
 					</div>
 				</div>
-				<div class="row">
-					<div class="col">
 
 
 				<!-- MILITARY DATA SECTION -->
+				<div class="row">
+					<div class="col">
 						<h5> MILITARY DATA </h5>
 					</div>
 				</div>
+
 
 				<!-- REVIEWS SECTION -->
 				<div class="row">
