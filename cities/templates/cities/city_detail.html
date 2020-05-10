@@ -115,9 +115,9 @@
 								<h7> Military Bases in {{state_rating.State}}
 								<thead>
 									<tr class="table-info">
-										<th class="col-s-3">Site Name</th>
-										<th class="col-s-3">Component</th>
-										<th class="col-s-3">Status</th>
+										<th>Site Name</th>
+										<th>Component</th>
+										<th>Status</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -142,17 +142,17 @@
 								<h7> Military Care Facilities in {{state_rating.State}}
 								<thead>
 									<tr class="table-info">
-										<th class="col-s-3">Facility Name</th>
-										<th class="col-s-3">City</th>
-										<th class="col-s-3">Primary Service</th>
-										<th class="col-s-3">Type</th>
+										<th>Facility Name</th>
+										<th>City</th>
+										<th>Primary Service</th>
+										<th>Type</th>
 									</tr>
 								</thead>
 								<tbody>
 									{% for row in militarycare %}
 									<tr>
 										<td> <a href="http://maps.google.com/?q={{row.S_ADD2}}+{{row.S_CITY}}+{{row.S_STATE}}" >{{row.FacilityName}}<a></td>
-										<td> {{row.S_City}}</td>
+										<td> {{row.S_CITY}}</td>
 										<td>{{row.PRIM_SVC}}</td>
 										<td>{{row.Type}}</td>
 									</tr>
