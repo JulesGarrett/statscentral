@@ -116,13 +116,17 @@ def get_militarygrantsavg(cityid):
             avgs = dictfetchall(cursor)
         return avgs
 
-def get_military_grant_per_population():
+def get_military_grant_per_population(cityid):
         with connection.cursor() as cursor:
-            cursor.execute('''SELECT hg.State, hg.GrantValue/pop.Pop as val_per_person From M_VA_HomeGrant hg
-                                left join (SELECT us.ST_Code, p.Pop from C_UnitedStates us
-                                			left join (select State_ID, SUM(Population) as Pop from C_ZipCodeFix group by State_ID) p
-                                			on p.State_ID = us.State_ID) pop
-                                on pop.ST_Code = hg.State order by val_per_person DESC''')
+            cursor.execute('''SELECT hg.State, hg.GrantValue/pop.Pop as val_per_person,
+                                 CASE When hg.State = (select State from C_US_MilitaryCities where City_ID = '''+str(cityid)+''')
+                                     THEN "#17a2b8" ELSE "#e85d47"END AS color
+                                 From M_VA_HomeGrant hg
+                                 left join (SELECT us.ST_Code, p.Pop
+                                     from C_UnitedStates us left join (select State_ID, SUM(Population) as Pop
+                                                                         from C_ZipCodeFix group by State_ID) p
+                                                              on p.State_ID = us.State_ID) pop
+                                  on pop.ST_Code = hg.State''')
             ratios = dictfetchall(cursor)
         return ratios
 
@@ -160,7 +164,7 @@ def detail_city(request, id):
     context['militarybases'] = get_militarybases(id)
     context['militarycare'] = get_militarycare(id)
     context['military_grantavgs'] = get_militarygrantsavg(id)
-    context['grant_per_pop'] = get_military_grant_per_population()
+    context['grant_per_pop'] = get_military_grant_per_population(id)
     return render(request, 'cities/city_detail.html', context)
 
 

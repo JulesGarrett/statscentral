@@ -207,7 +207,7 @@
 												labels: [{% for item in grant_per_pop %} "{{item.State}}", {% endfor %}],
 												datasets: [{
 														data: [{% for item in grant_per_pop %} "{{item.val_per_person}}", {% endfor %}],
-														backgroundColor: "#17a2b8"
+														backgroundColor: [{% for item in grant_per_pop %} "{{item.color}}", {% endfor %}]
 												}]
 										}
 								});
