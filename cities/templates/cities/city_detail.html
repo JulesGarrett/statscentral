@@ -109,61 +109,33 @@
 				<!-- SCHOOL DATA SECTION -->
 				<div class="row">
 					<div class="col-md-auto">
-		        <h5> MILITARY DATA </h5>
-						<div class="table-wrapper-scroll-y my-custom-scrollbar">
-			        <table class="table table-sm table-fixed">
-								<h7> Military Bases in {{state_rating.State}}
-								<thead>
-									<tr class="table-info">
-										<th>Site Name</th>
-										<th>Component</th>
-										<th>Status</th>
-									</tr>
-								</thead>
-								<tbody>
-									{% for row in militarybases %}
-									<tr>
-										<td>{{row.SiteName}}</td>
-										<td>{{row.Component}}</td>
-										<td>{{row.Status}}</td>
-									</tr>
-									{% endfor %}
-								</tbody>
-
-
-			        </table>
-						</div>
+						<h5> MILITARY DATA </h5>
+						<P> <canvas id="ratio_grant" width="500" height="400"></canvas>
+							<script>
+								var ctx = document.getElementById('ratio_grant').getContext('2d');
+								var myChart = new Chart(ctx, {
+										type: 'bar',
+										options: {
+												title: {
+														display: true,
+														text: 'VA Ratio of Home Grant Amount : State Population'
+												}
+										},
+										data: {
+												labels: [{% for item in grant_per_pop %} "{{item.State}}", {% endfor %}],
+												datasets: [{
+														label: 'Ratio of Grant Amount:State Population',
+														data: [{% for item in grant_per_pop %} "{{item.val_per_person}}", {% endfor %}],
+														backgroundColor: [{% for item in grant_per_pop %} "{{item.color}}", {% endfor %}]
+												}]
+										}
+								});
+							</script>
+						</P>
 					</div>
 					<div class="col-md-auto">
 						<br>
 						<h5>                    </h5>
-						<div class="table-wrapper-scroll-y my-custom-scrollbar">
-							<table class="table table-sm">
-								<h7> Military Care Facilities in {{state_rating.State}}
-								<thead>
-									<tr class="table-info">
-										<th>Facility Name</th>
-										<th>City</th>
-										<th>Primary Service</th>
-										<th>Type</th>
-									</tr>
-								</thead>
-								<tbody>
-									{% for row in militarycare %}
-									<tr>
-										<td> <a href="http://maps.google.com/?q={{row.S_ADD2}}+{{row.S_CITY}}+{{row.S_STATE}}" >{{row.FacilityName}}<a></td>
-										<td> {{row.S_CITY}}</td>
-										<td>{{row.PRIM_SVC}}</td>
-										<td>{{row.Type}}</td>
-									</tr>
-									{% endfor %}
-								</tbody>
-							</table>
-						</div>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-md-auto">
 						<P> <canvas id="avg_grant" width="500" height="400"></canvas>
 							<script>
 								var ctx = document.getElementById('avg_grant').getContext('2d');
@@ -191,29 +163,57 @@
 							</script>
 						</P>
 					</div>
+				</div>
+				<div class="row">
 					<div class="col-md-auto">
-						<P> <canvas id="ratio_grant" width="500" height="400"></canvas>
-							<script>
-								var ctx = document.getElementById('ratio_grant').getContext('2d');
-								var myChart = new Chart(ctx, {
-										type: 'bar',
-										options: {
-												title: {
-														display: true,
-														text: 'VA Ratio of Home Grant Amount : State Population'
-												}
-										},
-										data: {
-												labels: [{% for item in grant_per_pop %} "{{item.State}}", {% endfor %}],
-												datasets: [{
-														label: 'Ratio of Grant Amount:State Population',
-														data: [{% for item in grant_per_pop %} "{{item.val_per_person}}", {% endfor %}],
-														backgroundColor: [{% for item in grant_per_pop %} "{{item.color}}", {% endfor %}]
-												}]
-										}
-								});
-							</script>
-						</P>
+						<div class="table-wrapper-scroll-y my-custom-scrollbar">
+							<table class="table table-sm table-fixed">
+								<h7> Military Bases in {{state_rating.State}}
+								<thead>
+									<tr class="table-info">
+										<th>Site Name</th>
+										<th>Component</th>
+										<th>Status</th>
+									</tr>
+								</thead>
+								<tbody>
+									{% for row in militarybases %}
+									<tr>
+										<td>{{row.SiteName}}</td>
+										<td>{{row.Component}}</td>
+										<td>{{row.Status}}</td>
+									</tr>
+									{% endfor %}
+								</tbody>
+
+
+							</table>
+						</div>
+					</div>
+					<div class="col-md-auto">
+						<div class="table-wrapper-scroll-y my-custom-scrollbar">
+							<table class="table table-sm">
+								<h7> Military Care Facilities in {{state_rating.State}}
+								<thead>
+									<tr class="table-info">
+										<th>Facility Name</th>
+										<th>City</th>
+										<th>Primary Service</th>
+										<th>Type</th>
+									</tr>
+								</thead>
+								<tbody>
+									{% for row in militarycare %}
+									<tr>
+										<td> <a href="http://maps.google.com/?q={{row.S_ADD2}}+{{row.S_CITY}}+{{row.S_STATE}}" >{{row.FacilityName}}<a></td>
+										<td> {{row.S_CITY}}</td>
+										<td>{{row.PRIM_SVC}}</td>
+										<td>{{row.Type}}</td>
+									</tr>
+									{% endfor %}
+								</tbody>
+							</table>
+						</div>
 					</div>
 				</div>
 
