@@ -149,7 +149,7 @@ def detail_city(request, id):
     context['state_rating'] = get_stateavg_ratings_by_city(id)
     context['militarybases'] = get_militarybases(id)
     context['militarycare'] = get_militarycare(id)
-    context['military_grantavgs']
+    context['military_grantavgs'] = get_militarygrantsavg(id)
     return render(request, 'cities/city_detail.html', context)
 
 
