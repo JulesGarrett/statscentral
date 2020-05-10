@@ -156,7 +156,7 @@ def get_bully_data_by_state(cityid):
                                                           right join (select State_ID from C_US_MilitaryCities where City_ID = 13944) st
                                                           on st.State_ID = us.State_ID)
                                   THEN "#e85d47" ELSE "#17a2b8" END AS color From S_Bullying_HarrassmentReports bhr
-                                  order by schools desc''')
+                                  order by State asc''')
             values = dictfetchall(cursor)
         return values
 
