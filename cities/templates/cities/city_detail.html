@@ -243,9 +243,8 @@
 										}]
 
 									};
-									window.onload = function() {
-										var ctx = document.getElementById('canvas').getContext('2d');
-										window.myBar = new Chart(ctx, {
+										var ctx = document.getElementById('num_allegations').getContext('2d');
+										var myChart = new Chart(ctx, {
 											type: 'bar',
 											data: barChartData,
 											options: {
@@ -268,7 +267,6 @@
 												}
 											}
 										});
-									};
 								</script>
 						</P>
 					</div>
