@@ -405,16 +405,22 @@
 				<div class="row">
 					<div class="col">
 		        <h5> REVIEWS </h5>
-						{% for rev in reviews %}
-							<p>
-							 	{{rev.Rating}} {{rev.Comments}}
-							</p>
-					 	{% endfor %}
+						<div class="card m-auto" style="width: 100%">
+							<div class="card-body">
+								{% if reviews %}
+									<ul class="list-group">
+									{% for rev in reviews %}
+										Rating: {{rev.Rating}} <br> Comments: {{rev.Comments}}
+									{% endfor %}
+									</ul>
+									{% else %}
+										<p>There are no Reivew for {{city.City}} yet. Create a review <a href="{% url 'cities:create_review' %}" style="color: #17a2b8">here</a>.</p>
+									{% endif %}
+								</div>
+							</div>
+
 					</div>
 				</div>
-
-			</div>
-		</div>
 	</div>
 </div>
 <br>
