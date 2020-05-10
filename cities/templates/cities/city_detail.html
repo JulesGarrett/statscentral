@@ -1,7 +1,14 @@
 {% extends 'base.html' %}
-
-
 {% block content %}
+
+
+<style type="text/css">
+	.my-custom-scrollbar{
+		position: relative;
+		height: 200px;
+		overflow: auto;
+		}
+</style>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
 <!-- <style type="text/css">
@@ -101,7 +108,7 @@
 				<div class="row">
 	        <h5> MILITARY DATA </h5> <br>
 					<div class="col-md-auto">
-						<div class="table-wrapper-scroll-y" width="500" height="400">
+						<div class="table-wrapper-scroll-y my-custom-scrollbar">
 			        <table class="table">
 								<h7> Military Bases in {{state_rating.State}}
 								<thead>
