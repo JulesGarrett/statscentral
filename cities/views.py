@@ -122,7 +122,7 @@ def get_military_grant_per_population():
                                 left join (SELECT us.ST_Code, p.Pop from C_UnitedStates us
                                 			left join (select State_ID, SUM(Population) as Pop from C_ZipCodeFix group by State_ID) p
                                 			on p.State_ID = us.State_ID) pop
-                                on pop.ST_Code = hg.State''')
+                                on pop.ST_Code = hg.State order by val_per_person DESC''')
             ratios = dictfetchall(cursor)
         return ratios
 
