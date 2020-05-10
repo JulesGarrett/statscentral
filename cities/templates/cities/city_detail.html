@@ -135,13 +135,14 @@
 						</div>
 					</div>
 					<div class="col-md-auto">
-						<br>
+						<h5> </h5>
 						<div class="table-wrapper-scroll-y my-custom-scrollbar">
 							<table class="table table-sm">
 								<h7> Military Care Facilities in {{state_rating.State}}
 								<thead>
 									<tr class="table-info">
 										<th class="col-s-3">Facility Name</th>
+										<th class="col-s-3">City</th>
 										<th class="col-s-3">Primary Service</th>
 										<th class="col-s-3">Type</th>
 									</tr>
@@ -149,7 +150,8 @@
 								<tbody>
 									{% for row in militarycare %}
 									<tr>
-										<td> <a href="http://maps.google.com/?q={{row.S_ADD2}}+{{row.S_CITY}}+{{row.S_STATE}}" >{{row.S_ADD1}}<a></td>
+										<td> <a href="http://maps.google.com/?q={{row.S_ADD2}}+{{row.S_CITY}}+{{row.S_STATE}}" >{{row.FacilityName}}<a></td>
+										<td> {{row.S_City}}</td>
 										<td>{{row.PRIM_SVC}}</td>
 										<td>{{row.Type}}</td>
 									</tr>
