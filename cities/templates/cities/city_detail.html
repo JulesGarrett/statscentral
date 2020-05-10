@@ -110,6 +110,7 @@
 				<div class="row">
 					<div class="col-md-auto">
 		        <h5> MILITARY DATA </h5>
+						<div class="table-wrapper-scroll-y my-custom-scrollbar">
 			        <table class="table table-sm table-fixed">
 								<h7> Military Bases in {{state_rating.State}}
 								<thead>
@@ -119,7 +120,6 @@
 										<th>Status</th>
 									</tr>
 								</thead>
-							<div class="table-wrapper-scroll-y my-custom-scrollbar">
 								<tbody>
 									{% for row in militarybases %}
 									<tr>
@@ -137,6 +137,7 @@
 					<div class="col-md-auto">
 						<br>
 						<h5>                    </h5>
+						<div class="table-wrapper-scroll-y my-custom-scrollbar">
 							<table class="table table-sm">
 								<h7> Military Care Facilities in {{state_rating.State}}
 								<thead>
@@ -147,7 +148,6 @@
 										<th>Type</th>
 									</tr>
 								</thead>
-							<div class="table-wrapper-scroll-y my-custom-scrollbar">
 								<tbody>
 									{% for row in militarycare %}
 									<tr>
@@ -158,10 +158,42 @@
 									</tr>
 									{% endfor %}
 								</tbody>
-
-
 							</table>
 						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-auto">
+						<P> <canvas id="avg_grant" width="500" height="400"></canvas>
+							<script>
+								var ctx = document.getElementById('avg_grant').getContext('2d');
+								var myChart = new Chart(ctx, {
+										type: 'bar',
+										options: {
+												title: {
+														display: true,
+														text: 'Tax Amount by Category {{city.State}} vs Average'
+												}
+										},
+										data: {
+												labels: ["{{city.State}}", "Average"],
+												datasets: [{
+														label: '{{city.State}}',
+														data: [{% for item in military_grantavgs %} "{{item.GrantValue}}", {% endfor %}],
+														backgroundColor: "#17a2b8"
+												},
+												{
+														label: 'Average',
+														data: [{% for item in military_grantavgs %} "{{item.g_avg}}", {% endfor %}],
+														backgroundColor: "#e85d47"
+												}]
+										}
+								});
+							</script>
+						</P>
+					</div>
+					<div class="col-md-auto">
+
 					</div>
 				</div>
 

@@ -58,7 +58,18 @@ def get_top_7_state_tax(cityid):
 
 def get_state_tax(cityid):
         with connection.cursor() as cursor:
-            cursor.execute("select * from (select us.State as state, st.Tax_Type as tax, st.AMOUNT as amount from C_UnitedStates as us, C_StateTax st, C_US_MilitaryCities as mil_c where mil_c.City_ID = "+str(cityid)+" and mil_c.State_ID = us.State_ID and us.State = st.State and st.Tax_Type <> 'Total Taxes' group by us.State, st.Tax_Type, st.AMOUNT order by st.Tax_Type) a left join (select st.Tax_Type as tax, avg(st.AMOUNT) as avg_amount from C_StateTax st where st.State <> 'Total_US' group by st.Tax_Type order by st.Tax_Type) b on a.tax = b.tax order by avg_amount")
+            cursor.execute('''select * from
+                                (select us.State as state, st.Tax_Type as tax, st.AMOUNT as amount
+                                    from C_UnitedStates as us, C_StateTax st, C_US_MilitaryCities as mil_c
+                                    where mil_c.City_ID = '''+str(cityid)+''' and mil_c.State_ID = us.State_ID
+                                    and us.State = st.State and st.Tax_Type <> 'Total Taxes'
+                                    group by us.State, st.Tax_Type, st.AMOUNT order by st.Tax_Type) a
+                                left join (select st.Tax_Type as tax, avg(st.AMOUNT) as avg_amount
+                                    from C_StateTax st
+                                    where st.State <> 'Total_US'
+                                    group by st.Tax_Type order by st.Tax_Type) b
+                                on a.tax = b.tax
+                                order by avg_amount''')
             st_tax_avg = dictfetchall(cursor)
         return st_tax_avg
 
@@ -97,6 +108,15 @@ def get_militarycare(cityid):
             care_centers = dictfetchall(cursor)
         return care_centers
 
+def get_militarygrantsavg(cityid):
+        with connection.cursor() as cursor:
+            cursor.execute('''select g.GrantValue, a.g_avg from M_VA_HomeGrant g, (SELECT avg(GrantValue) as g_avg from M_VA_HomeGrant) a
+                                where g.State = (select mc.State from C_US_MilitaryCities mc
+                                					where mc.City_ID = '''+str(cityid)+''')''')
+            avgs = dictfetchall(cursor)
+        return avgs
+
+
 
 ######################################
 #          View Functions            #
@@ -129,6 +149,7 @@ def detail_city(request, id):
     context['state_rating'] = get_stateavg_ratings_by_city(id)
     context['militarybases'] = get_militarybases(id)
     context['militarycare'] = get_militarycare(id)
+    context['military_grantavgs']
     return render(request, 'cities/city_detail.html', context)
 
 
