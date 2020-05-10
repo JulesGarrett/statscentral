@@ -183,7 +183,7 @@ def detail_city(request, id):
     context['militarycare'] = get_militarycare(id)
     context['military_grantavgs'] = get_militarygrantsavg(id)
     context['grant_per_pop'] = get_military_grant_per_population(id)
-    context['school_bully'] = get_bully_avg(id)
+    context['school_bully'] = get_bully_data(id)
     return render(request, 'cities/city_detail.html', context)
 
 
