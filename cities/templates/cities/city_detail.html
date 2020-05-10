@@ -200,12 +200,13 @@
 										options: {
 												title: {
 														display: true,
-														text: 'VA Home Grant Value {{city.State}} vs Average'
+														text: 'VA Ratio of Home Grant Amount : State Population'
 												}
 										},
 										data: {
 												labels: [{% for item in grant_per_pop %} "{{item.State}}", {% endfor %}],
 												datasets: [{
+														label: 'Ratio of Grant Amount:State Population'
 														data: [{% for item in grant_per_pop %} "{{item.val_per_person}}", {% endfor %}],
 														backgroundColor: [{% for item in grant_per_pop %} "{{item.color}}", {% endfor %}]
 												}]
