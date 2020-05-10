@@ -172,6 +172,16 @@ def get_teach_data_by_state(cityid):
             values = dictfetchall(cursor)
         return values
 
+def get_sales_tax_by_state(cityid):
+        with connection.cursor() as cursor:
+            cursor.execute('''SELECT tx.State, tx.CombinedRate,
+                                    CASE When tx.State = (select State from C_UnitedStates us
+                                                            right join (select State_ID from C_US_MilitaryCities where City_ID = '''+str(cityid)+''') st
+                                                            on st.State_ID = us.State_ID)
+                                    THEN "#e85d47" ELSE "#17a2b8" END AS color From C_StateTaxPercent tx order by State asc''')
+            values = dictfetchall(cursor)
+        return values
+
 ######################################
 #          View Functions            #
 ######################################
@@ -208,6 +218,7 @@ def detail_city(request, id):
     context['school_bully'] = get_bully_data(id)
     context['school_bully_st'] = get_bully_data_by_state(id)
     context['school_teacher'] = get_teach_data_by_state(id)
+    context['sales_tax'] = get_sales_tax_by_state(id)
     return render(request, 'cities/city_detail.html', context)
 
 

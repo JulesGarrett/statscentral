@@ -105,6 +105,32 @@
 						</P>
 					</div>
 				</div>
+				<div class="row">
+					<div class="col-12">
+						<P> <canvas id="sales_tax" width="500" height="400"></canvas>
+							<script>
+								var ctx = document.getElementById('sales_tax').getContext('2d');
+								var myChart = new Chart(ctx, {
+										type: 'bar',
+										options: {
+												title: {
+														display: true,
+														text: 'Average Sales Tax (State + Avg Local) By State'
+												}
+										},
+										data: {
+												labels: [{% for item in sales_tax %} "{{item.State}}", {% endfor %}],
+												datasets: [{
+														label: 'Average Sales Tax',
+														data: [{% for item in sales_tax %} "{{item.CombinedRate}}", {% endfor %}],
+														backgroundColor: [{% for item in sales_tax %} "{{item.color}}", {% endfor %}]
+												}]
+										}
+								});
+							</script>
+						</P>
+					</div>
+				</div>
 
 
 				<!-- MILITARY DATA SECTION -->
