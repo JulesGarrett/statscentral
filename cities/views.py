@@ -4,8 +4,6 @@ from django.db import connection
 from cities.models import CityReviews
 from cities.forms import CreateReviewForm, UpdateReviewForm
 from account.models import Account
-from wordcloud import WordCloud, STOPWORDS
-import pandas as pd
 
 
 ######################################
@@ -194,7 +192,7 @@ def city_match_query(max_pop, min_pop, mil, base):
             cities = dictfetchall(cursor)
         return cities
     # pop plus bool mil aid
-    else if mil !="No" and base == "No":
+    elif mil !="No" and base == "No":
         with connection.cursor() as cursor:
             cursor.execute('''Select mc.City, z.City_Id as CityID, z.total_pop from
                             (Select City_ID, Sum(Population) as total_pop from C_ZipCodeFix
@@ -204,7 +202,7 @@ def city_match_query(max_pop, min_pop, mil, base):
             cities = dictfetchall(cursor)
         return cities
     # pop plus base type
-    else if mil =="No" and base != "No":
+    elif mil =="No" and base != "No":
         with connection.cursor() as cursor:
             cursor.execute('''select * from (
                                 Select us.State, mc.City, z.City_Id as CityID, z.total_pop
@@ -213,7 +211,7 @@ def city_match_query(max_pop, min_pop, mil, base):
                                                 having total_pop >= '''+str(min_pop)+''' and total_pop <= '''+str(max_pop)+''') z
                                                 left join C_US_MilitaryCities mc on mc.City_ID = z.City_ID
                                                 left join C_UnitedStates us on us.State_ID = mc.State_ID) base
-                                    where State in (SELECT State from M_MilitaryBases where Component = "'''+str(base)+'''")''')
+                                    where State in (SELECT State from M_MilitaryBases where Component = "'''+str(base)+'''") limit 25''')
             cities = dictfetchall(cursor)
         return cities
     # everything
