@@ -149,7 +149,7 @@
 								<tbody>
 									{% for row in militarycare %}
 									<tr>
-										<td>{{row.FacilityName}}</td>
+										<td> <a href="http://maps.google.com/?q={{row.S_ADD2}}+{{row.S_CITY}}+{{row.S_STATE}}" >{{row.S_ADD1}}<a></td>
 										<td>{{row.PRIM_SVC}}</td>
 										<td>{{row.Type}}</td>
 									</tr>
