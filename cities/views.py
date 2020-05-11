@@ -190,17 +190,18 @@ def city_match_query(max_pop, min_pop, mil, base):
                             having total_pop >= '''+str(min_pop)+''' and total_pop <= '''+str(max_pop)+''') z
                             left join C_US_MilitaryCities mc on mc.City_ID = z.City_ID limit 25''')
             cities = dictfetchall(cursor)
-        return cities
     # pop plus bool mil aid
     elif mil !="No" and base == "No":
         with connection.cursor() as cursor:
-            cursor.execute('''Select mc.City, z.City_Id as CityID, z.total_pop from
-                            (Select City_ID, Sum(Population) as total_pop from C_ZipCodeFix
-                            group by City_ID
-                            having total_pop >= '''+str(min_pop)+''' and total_pop <= '''+str(max_pop)+''') z
-                            left join C_US_MilitaryCities mc on mc.City_ID = z.City_ID limit 25''')
+            cursor.execute('''select * from (
+                                Select us.State as State, mc.State as StateCode, mc.City, z.City_Id as CityID, z.total_pop
+                                    from (Select City_ID, Sum(Population) as total_pop from C_ZipCodeFix
+                                                group by City_ID
+                                                having total_pop >= '''+str(min_pop)+''' and total_pop <= '''+str(max_pop)+''') z
+                                                left join C_US_MilitaryCities mc on mc.City_ID = z.City_ID
+                                                left join C_UnitedStates us on us.State_ID = mc.State_ID) base
+                                    where City in (SELECT S_CITY from M_Polytrauma_Care_Facility)''')
             cities = dictfetchall(cursor)
-        return cities
     # pop plus base type
     elif mil =="No" and base != "No":
         with connection.cursor() as cursor:
@@ -213,17 +214,22 @@ def city_match_query(max_pop, min_pop, mil, base):
                                                 left join C_UnitedStates us on us.State_ID = mc.State_ID) base
                                     where State in (SELECT State from M_MilitaryBases where Component = "'''+str(base)+'''") limit 25''')
             cities = dictfetchall(cursor)
-        return cities
     # everything
     else:
         with connection.cursor() as cursor:
-            cursor.execute('''Select mc.City, z.City_Id as CityID, z.total_pop from
-                            (Select City_ID, Sum(Population) as total_pop from C_ZipCodeFix
-                            group by City_ID
-                            having total_pop >= '''+str(min_pop)+''' and total_pop <= '''+str(max_pop)+''') z
-                            left join C_US_MilitaryCities mc on mc.City_ID = z.City_ID limit 25''')
+            cursor.execute('''select * from (
+                                Select us.State as State, mc.State as StateCode, mc.City, z.City_Id as CityID, z.total_pop
+                                    from (Select City_ID, Sum(Population) as total_pop from C_ZipCodeFix
+                                                group by City_ID
+                                                having total_pop >= '''+str(min_pop)+''' and total_pop <= '''+str(max_pop)+''') z
+                                                left join C_US_MilitaryCities mc on mc.City_ID = z.City_ID
+                                                left join C_UnitedStates us on us.State_ID = mc.State_ID) base
+                                    where State in (SELECT State from M_MilitaryBases where Component = "'''+str(base)+'''")
+                                    and City in (SELECT S_CITY from M_Polytrauma_Care_Facility)''')
             cities = dictfetchall(cursor)
+    if len(cities) > 0:
         return cities
+    else: return {"City":"No Cities found with those requirements"}
 
 ######################################
 #          View Functions            #
