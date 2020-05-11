@@ -317,7 +317,7 @@
 														data: [{% for item in school_bully_st %} "{{item.schools}}", {% endfor %}],
 														yAxisID: 'A',
 														backgroundColor: [{% for item in school_bully_st %} "{{item.color}}", {% endfor %}],
-														order:1
+														order:2
 												},
 												{
 														label: 'Average Allegations Per School',
@@ -327,7 +327,7 @@
 														type: "line",
 														yAxisID: 'B',
 														fill:false,
-														order:2
+														order:1
 												}]
 										},
 										options: {
@@ -368,7 +368,7 @@
 														data: [{% for item in school_teacher %} "{{item.teach_per_school}}", {% endfor %}],
 														yAxisID: 'A',
 														backgroundColor: [{% for item in school_teacher %} "{{item.color}}", {% endfor %}],
-														order:1
+														order:2
 												},
 												{
 														label: 'Percent of Certified Teachers',
@@ -378,7 +378,7 @@
 														type: "line",
 														yAxisID: 'B',
 														fill:false,
-														order:2
+														order:1
 												}]
 										},
 										options: {
