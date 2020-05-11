@@ -254,7 +254,7 @@ def city_match(request):
         context['max_pop'] = int(max_pop)
         context['m_base'] = str(base)
         context['military'] = str(mil)
-        context['cities'] = city_match_query(max_pop, min_pop, tax, mil, base)
+        context['cities'] = city_match_query(max_pop, min_pop, mil, base)
     return render(request, "cities/city_match.html", context)
 
 
