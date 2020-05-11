@@ -184,7 +184,7 @@ def city_match_query(max_pop, min_pop, mil, base):
     # just pop
     if mil =="No" and base == "No":
         with connection.cursor() as cursor:
-            cursor.execute('''Select mc.StateCode, mc.City, z.City_Id as CityID, z.total_pop from
+            cursor.execute('''Select mc.State as StateCode, mc.City, z.City_Id as CityID, z.total_pop from
                             (Select City_ID, Sum(Population) as total_pop from C_ZipCodeFix
                             group by City_ID
                             having total_pop >= '''+str(min_pop)+''' and total_pop <= '''+str(max_pop)+''') z
