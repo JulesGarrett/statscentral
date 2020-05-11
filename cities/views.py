@@ -188,7 +188,7 @@ def city_match_query(max_pop, min_pop, mil, base):
                             (Select City_ID, Sum(Population) as total_pop from C_ZipCodeFix
                             group by City_ID
                             having total_pop >= '''+str(min_pop)+''' and total_pop <= '''+str(max_pop)+''') z
-                            left join C_US_MilitaryCities mc on mc.City_ID = z.City_ID limit 25''')
+                            left join C_US_MilitaryCities mc on mc.City_ID = z.City_ID limit 100''')
             cities = dictfetchall(cursor)
     # pop plus bool mil aid
     elif mil !="No" and base == "No":
@@ -212,7 +212,7 @@ def city_match_query(max_pop, min_pop, mil, base):
                                                 having total_pop >= '''+str(min_pop)+''' and total_pop <= '''+str(max_pop)+''') z
                                                 left join C_US_MilitaryCities mc on mc.City_ID = z.City_ID
                                                 left join C_UnitedStates us on us.State_ID = mc.State_ID) base
-                                    where State in (SELECT State from M_MilitaryBases where Component = "'''+str(base)+'''") limit 25''')
+                                    where State in (SELECT State from M_MilitaryBases where Component = "'''+str(base)+'''") limit 100''')
             cities = dictfetchall(cursor)
     # everything
     else:
