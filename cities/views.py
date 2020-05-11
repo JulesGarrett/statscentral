@@ -153,7 +153,7 @@ def get_bully_data_by_state(cityid):
                                  CASE When bhr.State = (select State from C_UnitedStates us
                                                           right join (select State_ID from C_US_MilitaryCities where City_ID = '''+str(cityid)+''') st
                                                           on st.State_ID = us.State_ID)
-                                  THEN "#e85d47" ELSE "#17a2b8" END AS color From S_Bullying_HarrassmentReports bhr
+                                  THEN "#20c8e3" ELSE "#17a2b8" END AS color From S_Bullying_HarrassmentReports bhr
                                   order by State asc''')
             values = dictfetchall(cursor)
         return values
@@ -164,7 +164,7 @@ def get_teach_data_by_state(cityid):
                                      CASE When tce.State = (select State from C_UnitedStates us
                                                              right join (select State_ID from C_US_MilitaryCities where City_ID = '''+str(cityid)+''') st
                                                              on st.State_ID = us.State_ID)
-                                     THEN "#e85d47" ELSE "#17a2b8" END AS color
+                                     THEN "#20c8e3" ELSE "#17a2b8" END AS color
                                      From S_SCH_TeacherCertAndExperience tce
                                      order by State asc''')
             values = dictfetchall(cursor)

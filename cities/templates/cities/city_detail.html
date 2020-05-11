@@ -308,6 +308,17 @@
 												title: {
 														display: true,
 														text: 'Number of Schools and Average Allegations Per School'
+												},
+												scales: {
+													yAxes: [{
+														id: 'A',
+														type: 'linear',
+														position: 'left'
+													}, {
+														id: 'B',
+														type: 'linear',
+														position: 'right'
+													}]
 												}
 										},
 										data: {
@@ -330,19 +341,6 @@
 														order:1
 												}]
 										},
-										options: {
-									    scales: {
-									      yAxes: [{
-									        id: 'A',
-									        type: 'linear',
-									        position: 'left'
-									      }, {
-									        id: 'B',
-									        type: 'linear',
-									        position: 'right'
-									      }]
-									    }
-									  }
 								});
 							</script>
 						</P>
@@ -359,6 +357,21 @@
 												title: {
 														display: true,
 														text: 'Average Number of Teachers per School and Certification Percent'
+												},
+												scales: {
+													yAxes: [{
+														id: 'A',
+														type: 'linear',
+														position: 'left'
+													}, {
+														id: 'B',
+														type: 'linear',
+														position: 'right',
+														ticks: {
+															max: 110,
+															min: 50
+														}
+													}]
 												}
 										},
 										data: {
@@ -380,24 +393,7 @@
 														fill:false,
 														order:1
 												}]
-										},
-										options: {
-									    scales: {
-									      yAxes: [{
-									        id: 'A',
-									        type: 'linear',
-									        position: 'left'
-									      }, {
-									        id: 'B',
-									        type: 'linear',
-									        position: 'right',
-													ticks: {
-														max: 110,
-														min: 50
-													}
-									      }]
-									    }
-									  }
+										}
 								});
 							</script>
 						</P>
